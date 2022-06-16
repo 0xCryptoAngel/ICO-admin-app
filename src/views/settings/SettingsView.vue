@@ -42,7 +42,10 @@
         </page-wrapper>
         <page-wrapper title="Invitation Settings">
             <div>
-                <div class="grid grid-cols-3 gap-4">
+                <div
+                    class="grid grid-cols-3 gap-4"
+                    v-if="!!settingsData.invitation_bonus_percentages"
+                >
                     <div class="bg-white rounded-md p-4 flex items-center">
                         <img
                             src="../../assets/svgIcons/user_icon.svg"
@@ -51,7 +54,8 @@
                         <div class="w-full">
                             <input
                                 :value="
-                                    settingsData.invitation_bonus_percentages[0]
+                                    settingsData
+                                        ?.invitation_bonus_percentages[0]
                                 "
                                 class="trans_input"
                                 id="invitation_bonus_percentages_1"
@@ -67,7 +71,8 @@
                         <div class="w-full">
                             <input
                                 :value="
-                                    settingsData.invitation_bonus_percentages[1]
+                                    settingsData
+                                        ?.invitation_bonus_percentages[1]
                                 "
                                 class="trans_input"
                                 id="invitation_bonus_percentages_2"
@@ -83,7 +88,8 @@
                         <div class="w-full">
                             <input
                                 :value="
-                                    settingsData.invitation_bonus_percentages[2]
+                                    settingsData
+                                        ?.invitation_bonus_percentages[2]
                                 "
                                 class="trans_input"
                                 id="invitation_bonus_percentages_3"
