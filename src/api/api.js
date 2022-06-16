@@ -10,12 +10,12 @@ const api = axios.create({
             ? "http://localhost:80"
             : "https://api-staking-backend.herokuapp.com",
     headers: {
-        "Access-Control-Allow-Origin": "*",
+        // "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
     },
 });
 api.defaults.withCredentials = true;
-
+// api.defaults.headers.cookie;
 api.interceptors.response.use(
     function (response) {
         if (response.status === 401) {
