@@ -1,5 +1,6 @@
 import store from "@/store";
 import axios from "axios";
+
 const MODE = import.meta.env.MODE;
 
 // baseURL: "https://api-staking-backend.herokuapp.com",

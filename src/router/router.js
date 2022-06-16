@@ -92,7 +92,7 @@ const routes = [
     {
         path: "/users",
         name: "users",
-        component: () => import("@/views/browsingUsers/BrowsingUsersView.vue"),
+        component: () => import("@/views/browsingUsers/Customers.vue"),
         meta: {
             title: "Browsing Users",
         },

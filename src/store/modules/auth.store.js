@@ -1,5 +1,6 @@
 import { getUser, createUser } from "@/api/user.api";
-import api from "@/api/api";
+
+import router from "@/router/router";
 
 export default {
     state: () => ({
@@ -16,7 +17,10 @@ export default {
         setLoggedIn(state, _loggedIn) {
             state.loggedIn = _loggedIn;
             if (_loggedIn) localStorage.setItem("loggedIn", 1);
-            else localStorage.removeItem("loggedIn");
+            else {
+                localStorage.removeItem("loggedIn");
+                router.push("/login");
+            }
         },
     },
 
