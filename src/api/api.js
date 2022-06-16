@@ -10,17 +10,12 @@ const api = axios.create({
             ? "http://localhost:80"
             : "https://api-staking-backend.herokuapp.com",
     headers: {
-        "Access-Control-Allow-Origin":
-            MODE === "development"
-                ? "http://localhost:3000"
-                : "https://ico-admin-panel.netlify.app",
-        "Access-Control-Allow-Headers":
-            "Authorization, Origin, X-Requested-With, Content-Type, Accept",
+        "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
     },
 });
 api.defaults.withCredentials = true;
-api.defaults.crossDomain = true;
+
 api.interceptors.response.use(
     function (response) {
         if (response.status === 401) {
