@@ -36,7 +36,65 @@
                 </div>
 
                 <button @click="onUpdate" class="button info_button">
-                    Update
+                    Update Settings
+                </button>
+            </div>
+        </page-wrapper>
+        <page-wrapper title="Invitation Settings">
+            <div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="bg-white rounded-md p-4 flex items-center">
+                        <img
+                            src="../../assets/svgIcons/user_icon.svg"
+                            class="w-8 mr-2"
+                        />
+                        <div class="w-full">
+                            <input
+                                :value="
+                                    settingsData.invitation_bonus_percentages[0]
+                                "
+                                class="trans_input"
+                                id="invitation_bonus_percentages_1"
+                            />
+                            <p class="text-slate-900 text-xl">Lev.1 Bonus(%)</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-md p-4 flex items-center">
+                        <img
+                            src="../../assets/svgIcons/user_icon.svg"
+                            class="w-8 mr-2"
+                        />
+                        <div class="w-full">
+                            <input
+                                :value="
+                                    settingsData.invitation_bonus_percentages[1]
+                                "
+                                class="trans_input"
+                                id="invitation_bonus_percentages_2"
+                            />
+                            <p class="text-slate-900 text-xl">Lev.2 Bonus(%)</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-md p-4 flex items-center">
+                        <img
+                            src="../../assets/svgIcons/user_icon.svg"
+                            class="w-8 mr-2"
+                        />
+                        <div class="w-full">
+                            <input
+                                :value="
+                                    settingsData.invitation_bonus_percentages[2]
+                                "
+                                class="trans_input"
+                                id="invitation_bonus_percentages_3"
+                            />
+                            <p class="text-slate-900 text-xl">Lev.3 Bonus(%)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button @click="onUpdateInvitation" class="button info_button">
+                    Update Invitation Bonus
                 </button>
             </div>
         </page-wrapper>
@@ -77,10 +135,20 @@ export default {
                 usdc_vault,
             });
         };
+        const onUpdateInvitation = () => {
+            store.dispatch("settings/updateSettings", {
+                invitation_bonus_percentages: [
+                    getValueById("invitation_bonus_percentages_1"),
+                    getValueById("invitation_bonus_percentages_2"),
+                    getValueById("invitation_bonus_percentages_3"),
+                ],
+            });
+        };
 
         return {
             settingsData,
             onUpdate,
+            onUpdateInvitation,
         };
     },
 };
