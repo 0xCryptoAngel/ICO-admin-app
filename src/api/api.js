@@ -1,7 +1,6 @@
 import store from "@/store";
 import axios from "axios";
 const MODE = import.meta.env.MODE;
-console.log(MODE);
 
 // baseURL: "https://api-staking-backend.herokuapp.com",
 const api = axios.create({
@@ -19,12 +18,14 @@ api.defaults.withCredentials = true;
 api.interceptors.response.use(
     function (response) {
         if (response.status === 401) {
-            console.log("committt");
             store.commit("auth/setLoggedIn", false);
         }
         return response;
     },
     function (error) {
+        if (error.response.status === 401) {
+            store.commit("auth/setLoggedIn", false);
+        }
         // Do something with response error
         return Promise.reject(error);
     }

@@ -1,33 +1,45 @@
 <template>
-  <page-wrapper title="Staking Application">
-    <div class="flex flex-col w-full bg-white rounded-3xl px-4 py-4">
-      <staking-application-table :applications-data="applicationsData" />
-    </div>
-  </page-wrapper>
+    <page-wrapper title="Staking Application">
+        <div class="flex flex-col w-full bg-white rounded-3xl px-4 py-4">
+            <staking-application-table
+                @confirm="onConfirm"
+                :applications-data="applicationsData"
+            />
+        </div>
+    </page-wrapper>
 </template>
 
 <script>
 import PageWrapper from "@/components/PageWrapper.vue";
 import StakingApplicationTable from "../../components/wagerMangement/bettingApplication/StakingApplicationTable.vue";
+import { computed, onMounted } from "@vue/runtime-core";
+import { useStore } from "vuex";
 
 export default {
-  components: {
-    PageWrapper,
-    StakingApplicationTable,
-  },
-  setup() {
-    const applicationsData = [
-      {
-        betTime: "2022-03-04",
-        betEndTime: "2022-04-05",
-        walletAddress: "0x1231231231321321123",
-        betAmount: 34564,
-        betRevenueCategory: "game",
-      },
-    ];
-    return {
-      applicationsData,
-    };
-  },
+    components: {
+        PageWrapper,
+        StakingApplicationTable,
+    },
+    setup() {
+        const store = useStore();
+        onMounted(async () => {
+            store.dispatch("staking/fetchStakingInformations");
+        });
+
+        const applicationsData = computed(
+            () => store.getters["staking/getStakingApplications"]
+        );
+
+        const onConfirm = (application) => {
+            if (window.confirm("Do you really want to comfirm?")) {
+                store.dispatch("staking/confirmApplication", application);
+            }
+        };
+
+        return {
+            applicationsData,
+            onConfirm,
+        };
+    },
 };
 </script>
