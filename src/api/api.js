@@ -1,8 +1,14 @@
 import store from "@/store";
 import axios from "axios";
+const MODE = import.meta.env.MODE;
+console.log(MODE);
+
+// baseURL: "https://api-staking-backend.herokuapp.com",
 const api = axios.create({
-    baseURL: "http://localhost:80",
-    // baseURL: "https://api-staking-backend.herokuapp.com",
+    baseURL:
+        MODE === "development"
+            ? "http://localhost:80"
+            : "https://api-staking-backend.herokuapp.com",
     headers: {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
