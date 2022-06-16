@@ -44,7 +44,6 @@ export default {
     const browsingUsersData = computed(
       () => store.getters["withdrawal/getWithdrawalList"]
     );
-    console.log("browsingUsersData", browsingUsersData);
     // const browsingUsersData = [
     //   {
     //     accessTime: "2022-6-13",
