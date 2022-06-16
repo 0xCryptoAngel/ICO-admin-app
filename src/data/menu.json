@@ -1,0 +1,17 @@
+{
+  "mainSection": [
+    {
+      "title": "Склады",
+      "pathName": "warehouses",
+      "icon": "warehouses_active",
+      "icon_active": "warehouses"
+    },
+    {
+      "title": "Водители",
+      "pathName": "drivers",
+      "icon": "drivers",
+      "icon_active": "drivers_active"
+    }
+  ]
+}
+  
