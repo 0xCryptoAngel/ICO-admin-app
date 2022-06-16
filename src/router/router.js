@@ -58,7 +58,7 @@ const routes = [
         path: "/staking/application",
         name: "staking",
         component: () =>
-            import("@/views/wagerMangement/StakingApplication.vue"),
+            import("@/views/stakingManagement/StakingApplication.vue"),
         meta: {
             title: "staking",
         },
@@ -67,7 +67,7 @@ const routes = [
         path: "/staking/bettinginformation",
         name: "bettinginformation",
         component: () =>
-            import("@/views/wagerMangement/WagerBettingInformation.vue"),
+            import("@/views/stakingManagement/WagerBettingInformation.vue"),
         meta: {
             title: "BettingInformation",
         },

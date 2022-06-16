@@ -1,7 +1,7 @@
 <template>
     <div class="">
         <table class="w-full">
-            <thead class="bg-gray-75 text-left uppercase w-full rounded-lg">
+            <thead>
                 <tr class="text-sm font-bold">
                     <th class="px-1 py-3 w-88">Staking Time</th>
                     <th class="px-1 py-3">Ending Time</th>

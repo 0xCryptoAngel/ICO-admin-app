@@ -15,7 +15,7 @@
         <td>
             {{ link.option }}
         </td>
-        <td class="py-3">
+        <td>
             <button
                 class="confirm_button"
                 @click="onConfirm"
@@ -44,10 +44,3 @@ export default {
     },
 };
 </script>
-
-<style lang="postcss">
-.confirm_button {
-    @apply text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
-    @apply disabled:cursor-not-allowed disabled:bg-gray-500;
-}
-</style>
