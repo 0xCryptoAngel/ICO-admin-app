@@ -3,12 +3,12 @@
         <table class="w-full">
             <thead>
                 <tr class="text-sm font-bold">
-                    <th class="px-1 py-3 w-88">Staking Time</th>
-                    <th class="px-1 py-3">Ending Time</th>
-                    <th class="px-1 py-3">Address</th>
-                    <th class="px-1 py-3">Amount</th>
-                    <th class="px-1 py-3">Category</th>
-                    <th class="py-3 w-5"></th>
+                    <th>Staking Time</th>
+                    <th>Ending Time</th>
+                    <th>Address</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody class="divide-y">

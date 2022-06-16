@@ -17,7 +17,7 @@
         </td>
         <td>
             <button
-                class="confirm_button"
+                class="button"
                 @click="onConfirm"
                 :disabled="link.is_confirmed"
             >

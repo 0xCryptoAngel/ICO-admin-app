@@ -13,19 +13,19 @@
             "subLinks": [
                 {
                     "title": "Applications",
-                    "pathName": "staking",
+                    "pathName": "staking-applications",
+                    "icon": "drivers",
+                    "icon_active": "drivers_active"
+                },
+                {
+                    "title": "Categories",
+                    "pathName": "staking-categories",
                     "icon": "drivers",
                     "icon_active": "drivers_active"
                 },
                 {
                     "title": "User betting information",
                     "pathName": "bettinginformation",
-                    "icon": "drivers",
-                    "icon_active": "drivers_active"
-                },
-                {
-                    "title": "Betting category settings",
-                    "pathName": "bettingcategory",
                     "icon": "drivers",
                     "icon_active": "drivers_active"
                 },
@@ -38,14 +38,14 @@
             ]
         },
         {
-            "title": "Browsing users",
-            "pathName": "browsingusers",
+            "title": "Withdrawal",
+            "pathName": "withdrawal-management",
             "icon": "warehouses_active",
             "icon_active": "warehouses"
         },
         {
-            "title": "Withdrawal Management",
-            "pathName": "withdrawalmanage",
+            "title": "Browsing users",
+            "pathName": "browsingusers",
             "icon": "warehouses_active",
             "icon_active": "warehouses"
         },
@@ -55,12 +55,6 @@
             "icon": "warehouses_active",
             "icon_active": "warehouses",
             "subLinks": [
-                {
-                    "title": "Real Users",
-                    "pathName": "staking",
-                    "icon": "drivers",
-                    "icon_active": "drivers_active"
-                },
                 {
                     "title": "Virtual Users",
                     "pathName": "virtualusers",

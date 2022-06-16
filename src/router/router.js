@@ -56,11 +56,20 @@ const routes = [
     },
     {
         path: "/staking/application",
-        name: "staking",
+        name: "staking-applications",
         component: () =>
-            import("@/views/stakingManagement/StakingApplication.vue"),
+            import("@/views/stakingManagement/StakingApplications.vue"),
         meta: {
             title: "staking",
+        },
+    },
+    {
+        path: "/staking/categories",
+        name: "staking-categories",
+        component: () =>
+            import("@/views/stakingManagement/StakingCategories.vue"),
+        meta: {
+            title: "BettingCategory",
         },
     },
     {
@@ -73,19 +82,19 @@ const routes = [
         },
     },
     {
-        path: "/staking/bettingcategorysetting",
-        name: "bettingcategory",
-        component: () => import("@/views/DriversView.vue"),
+        path: "/staking/bettingrevenue",
+        name: "bettingrevenue",
+        component: () => import("@/views/StakingCategories.vue"),
         meta: {
             title: "BettingCategory",
         },
     },
     {
-        path: "/staking/bettingrevenue",
-        name: "bettingrevenue",
-        component: () => import("@/views/DriversView.vue"),
+        path: "/withdrawal",
+        name: "withdrawal-management",
+        component: () => import("@/views/withdrawalMange/WithdrawalView.vue"),
         meta: {
-            title: "BettingCategory",
+            title: "Withdrawal",
         },
     },
     {
@@ -97,19 +106,11 @@ const routes = [
         },
     },
     {
-        path: "/withdrawalmanage",
-        name: "withdrawalmanage",
-        component: () => import("@/views/withdrawalMange/WithdrawalView.vue"),
-        meta: {
-            title: "Withdrawal management",
-        },
-    },
-    {
         path: "/usermanagement",
         name: "usermanagement",
         component: () => import("@/views/withdrawalMange/WithdrawalView.vue"),
         meta: {
-            title: "Withdrawal management",
+            title: "Withdrawal",
         },
     },
     {
@@ -117,7 +118,7 @@ const routes = [
         name: "virtualusers",
         component: () => import("@/views/withdrawalMange/WithdrawalView.vue"),
         meta: {
-            title: "Withdrawal management",
+            title: "Withdrawal",
         },
     },
 ];

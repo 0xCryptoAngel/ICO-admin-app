@@ -58,6 +58,7 @@ export default {
             commit("setStakingApplications", applications.data);
             commit("setStakingOptions", options.data);
         },
+
         async fetchStakingOptions({ commit }, payload) {
             const response = await getStakingOptions(payload);
             commit("setStakingOptions", response.data);

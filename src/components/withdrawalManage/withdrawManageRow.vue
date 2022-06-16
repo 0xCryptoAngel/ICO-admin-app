@@ -1,35 +1,38 @@
 <template>
-  <tr class="border-b-1">
-    <td class="py-3">
-      <input type="checkbox" name="" id="" />
-    </td>
-    <td>
-      {{ link.accessTime }}
-    </td>
-    <td>
-      {{ link.walletAddress }}
-    </td>
-    <td>
-      {{ link.usdcBalance }}
-    </td>
-    <td>
-      {{ link.ipAddress }}
-    </td>
-    <td>
-      {{ link.accessTimes }}
-    </td>
-    <td>
-      {{ link.isAdd }}
-    </td>
-  </tr>
+    <tr class="border-b-1">
+        <td class="py-3">
+            {{ new Date(withdrawal.created_at).toLocaleString("en-us") }}
+        </td>
+        <td>
+            {{ withdrawal.amount }}
+        </td>
+        <td>
+            {{ withdrawal.wallet }}
+        </td>
+        <td>
+            <button
+                class="button"
+                @click="onConfirm"
+                :disabled="withdrawal.is_confirmed"
+            >
+                {{ withdrawal.is_confirmed ? "Confirmed" : "Confirm" }}
+            </button>
+        </td>
+    </tr>
 </template>
 
 <script>
-import DpLinkButton from "@/components/buttons/DpLinkButton.vue";
+import { getEllipsisTxt } from "@/utils/formatter";
+
 export default {
-  components: {
-    DpLinkButton,
-  },
-  props: { link: { type: Object, required: true } },
+    components: {},
+    props: { withdrawal: { type: Object, required: true } },
+    emits: ["confirm"],
+    setup(props, { emit }) {
+        const onConfirm = () => {
+            emit("confirm", props.withdrawal);
+        };
+        return { onConfirm, getEllipsisTxt };
+    },
 };
 </script>
