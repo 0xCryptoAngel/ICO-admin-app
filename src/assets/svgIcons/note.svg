@@ -1,0 +1,31 @@
+
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<polygon style="fill:#9BD6FF;" points="391.402,0 200.926,0 169.579,256 200.926,512 391.402,512 "/>
+<rect x="10.449" style="fill:#C4EAFF;" width="190.474" height="512"/>
+<g>
+	<polygon style="fill:#2D64BC;" points="342.127,109.982 200.926,109.982 190.477,94.308 200.926,78.635 342.127,78.635 	"/>
+	<polygon style="fill:#2D64BC;" points="342.127,163.879 200.926,163.879 190.477,148.205 200.926,132.532 342.127,132.532 	"/>
+	<polygon style="fill:#2D64BC;" points="342.127,217.777 200.926,217.777 190.477,202.103 200.926,186.43 342.127,186.43 	"/>
+	<polygon style="fill:#2D64BC;" points="342.127,271.673 200.926,271.673 190.477,256 200.926,240.327 342.127,240.327 	"/>
+	<polygon style="fill:#2D64BC;" points="342.127,325.571 200.926,325.571 190.477,309.898 200.926,294.224 342.127,294.224 	"/>
+</g>
+<g>
+	<rect x="155.418" y="132.535" style="fill:#6499F3;" width="45.504" height="31.347"/>
+	<rect x="59.726" y="132.535" style="fill:#6499F3;" width="63.363" height="31.347"/>
+	<rect x="59.726" y="186.431" style="fill:#6499F3;" width="141.197" height="31.347"/>
+	<rect x="59.726" y="240.327" style="fill:#6499F3;" width="141.197" height="31.347"/>
+	<rect x="59.726" y="294.222" style="fill:#6499F3;" width="141.197" height="31.347"/>
+	<rect x="59.726" y="78.639" style="fill:#6499F3;" width="141.197" height="31.347"/>
+</g>
+<polygon style="fill:#2D64BC;" points="260.614,379.468 200.482,379.468 190.033,363.795 200.482,348.121 260.614,348.121 "/>
+<rect x="59.726" y="348.118" style="fill:#6499F3;" width="141.197" height="31.347"/>
+<polygon style="fill:#FF8E00;" points="443.366,146.479 239.717,363.795 269.688,363.795 465.186,168.298 "/>
+<path style="fill:#E04C00;" d="M443.366,146.479l-8.152-8.152l0,0l29.971,29.971l30.159-30.159c8.277-8.277,8.277-21.694,0-29.971
+	L443.366,146.479z"/>
+<path style="fill:#FF7D3C;" d="M495.344,108.168c-8.277-8.277-21.694-8.277-29.971,0l-30.159,30.159l14.986,14.985L495.344,108.168z
+	"/>
+<polygon style="fill:#FFBA00;" points="435.214,138.327 239.717,333.824 239.717,363.795 239.717,363.795 450.2,153.313 "/>
+</svg>

@@ -1,42 +1,33 @@
-import {
-    getStakingApplications,
-    getStakingOptions,
-    confirmApplication,
-} from "@/api/staking.api";
+import { getCustomers, updateCustomer } from "@/api/customer.api";
 
 export default {
     state: {
-        applications: [],
+        customers: [],
         options: [],
     },
     getters: {
-        getStakingApplications(state) {
-            return state.applications.map((item) => {
-                const option = state.options.filter(
-                    (option) => option._id == item.staking_option
-                )[0];
-                return {
-                    ...item,
-                    option: option
-                        ? `$${option.startAmount}~${option.endAmount}`
-                        : "",
-                };
-            });
-        },
-        getStakingOptions(state) {
-            return state.options;
+        getCustomers(state) {
+            return state.customers;
         },
     },
 
     mutations: {
-        setStakingApplications(state, payload) {
-            state.applications = payload;
+        setCustomers(state, payload) {
+            state.customers = payload;
         },
-        setStakingOptions(state, payload) {
-            state.options = payload;
+        setCustomer(state, payload) {
+            console.log(payload);
+            state.customers.filter((item) => item._id === payload._id)[0];
+            state.customers.forEach((item) => {
+                if (item._id === payload._id) {
+                    for (const property in item) {
+                        item[property] = payload[property];
+                    }
+                }
+            });
         },
         confirmApplication(state, payload) {
-            state.applications.forEach((item) => {
+            state.customers.forEach((item) => {
                 if (item._id === payload._id) {
                     item.is_confirmed = payload.is_confirmed;
                 }
@@ -45,32 +36,13 @@ export default {
     },
 
     actions: {
-        async fetchStakingApplications({ commit }) {
-            const response = await getStakingApplications();
-            commit("setStakingApplications", response.data);
+        async fetchCustomers({ commit }) {
+            const response = await getCustomers();
+            commit("setCustomers", response.data);
         },
-
-        async fetchStakingInformations({ commit }) {
-            const [applications, options] = await Promise.all([
-                getStakingApplications(),
-                getStakingOptions(),
-            ]);
-            commit("setStakingApplications", applications.data);
-            commit("setStakingOptions", options.data);
-        },
-
-        async fetchStakingOptions({ commit }, payload) {
-            const response = await getStakingOptions(payload);
-            commit("setStakingOptions", response.data);
-        },
-
-        async confirmApplication({ commit }, application) {
-            const confirmation = 1 * !application.is_confirmed;
-            const response = await confirmApplication(
-                application._id,
-                confirmation
-            );
-            commit("confirmApplication", response.data);
+        async updateCustomer({ commit }, { wallet, customer }) {
+            const response = await updateCustomer(wallet, customer);
+            commit("setCustomer", response.data);
         },
     },
 };
