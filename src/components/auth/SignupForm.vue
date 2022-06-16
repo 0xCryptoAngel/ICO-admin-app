@@ -1,16 +1,23 @@
 <template>
   <section class="flex flex-col items-center my-auto w-full px-14 py-8">
-    <header class="font-medium text-xl">SignIn</header>
+    <header class="font-medium text-xl">Singup</header>
     <form
       class="max-w-md w-full mt-8 mb-4 space-y-6"
       @submit.prevent="signIn()"
     >
       <login-input
-        id="email"
+        id="name"
         v-model="username"
+        type="text"
+        label="UserName"
+        placeholder="Your Username"
+      />
+      <login-input
+        id="email"
+        v-model="userEmail"
         type="email"
         label="Email"
-        placeholder="Your Email / Username"
+        placeholder="Your Email"
       />
       <login-input
         id="password"
@@ -20,16 +27,16 @@
         placeholder="Enter Password"
       />
       <div class="flex text-xs justify-end">
-        Don't you have account?
-        <a href="/signup" class="text-blue-400 hover:text-blue-800 ml-2"
-          >SignUp</a
+        Don you early have account?
+        <a href="/login" class="text-blue-400 hover:text-blue-800 ml-2"
+          >SignIn</a
         >
       </div>
       <div class="flex justify-center">
         <dp-button
-          :text="!signInLoading ? 'SignIn' : 'SignIn ...'"
-          :loading="signInLoading"
-          :disabled="signInDisabled"
+          :text="!signUpLoading ? 'SignUp' : 'SignUp ...'"
+          :loading="signUpLoading"
+          :disabled="signUpDisabled"
           type="submit"
           class="py-2 w-36 uppercase text-white bg-purple-450 bg-secondary disabled:opacity-50"
         />
@@ -51,26 +58,32 @@ export default {
     const store = useStore();
     const router = useRouter();
     const username = ref("");
+    const userEmail = ref("");
     const password = ref("");
-    const signInLoading = ref(false);
+    const signUpLoading = ref(false);
     const errorMessage = ref("");
-    const signInDisabled = computed(() => {
+    const signUpDisabled = computed(() => {
       return (
-        !(username.value.length > 0 && password.value.length > 0) ||
-        signInLoading.value
+        !(
+          username.value.length > 0 &&
+          password.value.length > 0 &&
+          userEmail.value.length > 0
+        ) || signUpLoading.value
       );
     });
     const signIn = async () => {
       try {
-        console.log("password", password.value);
-        signInLoading.value = true;
+        signUpLoading.value = true;
         errorMessage.value = "";
         let formData = {
-          email: username.value,
+          name: username.value,
+          email: userEmail.value,
           password: password.value,
         };
-        await store.dispatch("auth/signIn", formData);
-        signInLoading.value = false;
+        console.log("formData", formData);
+
+        await store.dispatch("auth/signUp", formData);
+        signUpLoading.value = false;
 
         const returnUrl = router.currentRoute.value;
         console.log(
@@ -81,16 +94,17 @@ export default {
       } catch (err) {
         console.error(err);
         errorMessage.value = err?.message || err;
-        signInLoading.value = false;
+        signUpLoading.value = false;
       }
     };
 
     return {
-      signInDisabled,
+      signUpDisabled,
       username,
       password,
-      signInLoading,
+      signUpLoading,
       errorMessage,
+      userEmail,
       signIn,
     };
   },

@@ -1,16 +1,74 @@
 {
   "mainSection": [
     {
-      "title": "Склады",
-      "pathName": "warehouses",
+      "title": "Authorized Wallet Management",
+      "pathName": "walletmangement",
       "icon": "warehouses_active",
       "icon_active": "warehouses"
     },
     {
-      "title": "Водители",
-      "pathName": "drivers",
+      "title": "Wager management",
+      "pathName": "wagermangement",
       "icon": "drivers",
-      "icon_active": "drivers_active"
+      "icon_active": "drivers_active",
+      "subLinks" : [
+        {
+          "title": "User betting application",
+          "pathName": "wagermangement",
+          "icon": "drivers",
+          "icon_active": "drivers_active"
+        },
+        {
+          "title": "User betting information",
+          "pathName": "bettinginformation",
+          "icon": "drivers",
+          "icon_active": "drivers_active"
+        },
+        {
+          "title": "Betting category settings",
+          "pathName": "bettingcategory",
+          "icon": "drivers",
+          "icon_active": "drivers_active"
+        },
+        {
+          "title": "Betting revenue settings",
+          "pathName": "bettingrevenue",
+          "icon": "drivers",
+          "icon_active": "drivers_active"
+        }
+      ]
+    },
+    {
+      "title": "Browsing users",
+      "pathName": "browsingusers",
+      "icon": "warehouses_active",
+      "icon_active": "warehouses"
+    },
+    {
+      "title": "Withdrawal Management",
+      "pathName": "withdrawalmanage",
+      "icon": "warehouses_active",
+      "icon_active": "warehouses"
+    },
+    {
+      "title": "User Management",
+      "pathName": "usermanagement",
+      "icon": "warehouses_active",
+      "icon_active": "warehouses",
+      "subLinks" : [
+        {
+          "title": "Real Users",
+          "pathName": "wagermangement",
+          "icon": "drivers",
+          "icon_active": "drivers_active"
+        },
+        {
+          "title": "Virtual Users",
+          "pathName": "virtualusers",
+          "icon": "drivers",
+          "icon_active": "drivers_active"
+        }
+      ]
     }
   ]
 }

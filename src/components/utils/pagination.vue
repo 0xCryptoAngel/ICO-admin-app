@@ -1,6 +1,6 @@
 <template>
-  <div class="flex  items-center justify-between py-2 mt-auto">
-    <div class="text-xs">Показано 1-10 из 10 записей</div>
+  <div class="flex items-center justify-between py-2 mt-auto">
+    <div class="text-xs"></div>
     <ul class="list-none flex items-center">
       <li>
         <button
@@ -8,7 +8,7 @@
           @click="onClickPreviousPage"
           :disabled="isInFirstPage"
         >
-          <SvgIcon class="w-3 h-5" name="leftArrow"/>
+          <SvgIcon class="w-3 h-5" name="leftArrow" />
         </button>
       </li>
 
@@ -30,15 +30,10 @@
       <!-- Visible Buttons End -->
 
       <li>
-        <button
-          type="button"
-          @click="onClickNextPage"
-          :disabled="isInLastPage"
-        >
-          <SvgIcon class="w-3 h-5" name="rightArrow"/>
+        <button type="button" @click="onClickNextPage" :disabled="isInLastPage">
+          <SvgIcon class="w-3 h-5" name="rightArrow" />
         </button>
       </li>
-
     </ul>
   </div>
 </template>
@@ -49,16 +44,16 @@ export default {
     maxVisibleButtons: {
       type: Number,
       required: false,
-      default: 3
-    },    
+      default: 3,
+    },
     totalPages: {
       type: Number,
-      required: true
+      required: true,
     },
     currentPage: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     startPage() {
@@ -78,12 +73,13 @@ export default {
 
       for (
         let i = this.startPage;
-        i <= Math.min(this.startPage + this.maxVisibleButtons - 1, this.totalPages);
+        i <=
+        Math.min(this.startPage + this.maxVisibleButtons - 1, this.totalPages);
         i++
       ) {
         range.push({
           name: i,
-          isDisabled: i === this.currentPage
+          isDisabled: i === this.currentPage,
         });
       }
 
@@ -98,23 +94,23 @@ export default {
   },
   methods: {
     onClickPreviousPage() {
-      this.$emit('pagechanged', this.currentPage - 1);
+      this.$emit("pagechanged", this.currentPage - 1);
     },
     onClickPage(page) {
-      this.$emit('pagechanged', page);
+      this.$emit("pagechanged", page);
     },
     onClickNextPage() {
-      this.$emit('pagechanged', this.currentPage + 1);
+      this.$emit("pagechanged", this.currentPage + 1);
     },
     isPageActive(page) {
       return this.currentPage === page;
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
 .active {
-  background-color: #6160DC;
+  background-color: #6160dc;
   color: #ffffff;
   border-width: 1px;
 }
