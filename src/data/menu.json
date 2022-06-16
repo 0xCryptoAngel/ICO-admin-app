@@ -28,12 +28,6 @@
                     "pathName": "bettinginformation",
                     "icon": "drivers",
                     "icon_active": "drivers_active"
-                },
-                {
-                    "title": "Betting revenue settings",
-                    "pathName": "bettingrevenue",
-                    "icon": "drivers",
-                    "icon_active": "drivers_active"
                 }
             ]
         },
@@ -44,8 +38,8 @@
             "icon_active": "warehouses"
         },
         {
-            "title": "Browsing users",
-            "pathName": "browsingusers",
+            "title": "Users",
+            "pathName": "users",
             "icon": "warehouses_active",
             "icon_active": "warehouses"
         },

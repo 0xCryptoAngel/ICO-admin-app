@@ -82,14 +82,6 @@ const routes = [
         },
     },
     {
-        path: "/staking/bettingrevenue",
-        name: "bettingrevenue",
-        component: () => import("@/views/StakingCategories.vue"),
-        meta: {
-            title: "BettingCategory",
-        },
-    },
-    {
         path: "/withdrawal",
         name: "withdrawal-management",
         component: () => import("@/views/withdrawalMange/WithdrawalView.vue"),
@@ -98,8 +90,8 @@ const routes = [
         },
     },
     {
-        path: "/browsingusers",
-        name: "browsingusers",
+        path: "/users",
+        name: "users",
         component: () => import("@/views/browsingUsers/BrowsingUsersView.vue"),
         meta: {
             title: "Browsing Users",
