@@ -1,8 +1,8 @@
 {
     "mainSection": [
         {
-            "title": "Authorized Wallets",
-            "pathName": "walletmangement",
+            "title": "Settings",
+            "pathName": "settings",
             "icon": "warehouses_active",
             "icon_active": "warehouses"
         },

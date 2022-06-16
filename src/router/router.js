@@ -31,9 +31,9 @@ const routes = [
         },
     },
     {
-        path: "/walletmangement",
-        name: "walletmangement",
-        component: () => import("@/views/wareHouse/WalletMangementView.vue"),
+        path: "/settings",
+        name: "settings",
+        component: () => import("@/views/settings/SettingsView.vue"),
         meta: {
             title: "Warehouses",
         },
