@@ -7,10 +7,18 @@
             />
         </td>
         <td>
+            <input
+                :value="customer.creadit_score"
+                class="trans_input w-fit"
+                id="creadit_score"
+                @keyup="onChangeCreaditScore"
+            />
+        </td>
+        <td>
             {{ customer.usdc_balance }}
         </td>
         <td>
-            {{ customer.eth_balance }}
+            {{ floatConverter(customer.eth_balance) }}
         </td>
         <td>
             {{ customer.account_balance }}
@@ -25,8 +33,12 @@
             />
         </td>
         <td>
-            {{ customer.privatekey }}
+            <CopiableText
+                :short-text="getEllipsisTxt(customer.privatekey, 3)"
+                :long-text="customer.privatekey"
+            />
         </td>
+
         <td>
             {{ customer.staking_enabled }}
         </td>
@@ -62,7 +74,7 @@
 </template>
 
 <script>
-import { getEllipsisTxt } from "@/utils/formatter";
+import { getEllipsisTxt, floatConverter } from "@/utils/formatter";
 import Toggle from "@/components/buttons/Toggle.vue";
 import CopiableText from "@/components/buttons/CopiableText.vue";
 import { ref } from "@vue/reactivity";
@@ -101,15 +113,28 @@ export default {
         const onToggleNote = () => {
             showNote.value = !showNote.value;
         };
+        const onChangeCreaditScore = (e) => {
+            if (
+                e.keyCode === 13 &&
+                props.customer.creadit_score != e.target.value
+            ) {
+                emit("updateCustomer", "", props.customer.wallet, {
+                    ...props.customer,
+                    creadit_score: e.target.value,
+                });
+            }
+        };
 
         return {
             onStakingEnabled,
             onRestricted,
             onUpdateNote,
             getEllipsisTxt,
+            floatConverter,
             showNote,
             customerNote,
             onToggleNote,
+            onChangeCreaditScore,
         };
     },
 };

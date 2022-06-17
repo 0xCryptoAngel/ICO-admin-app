@@ -4,6 +4,7 @@
             <thead>
                 <tr class="text-sm font-bold">
                     <th>Wallet</th>
+                    <th>Credit.Scr</th>
                     <th>USDC(Bal)</th>
                     <th>Eth(Bal)</th>
                     <th>Balance</th>
