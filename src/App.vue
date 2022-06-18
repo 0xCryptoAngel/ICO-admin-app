@@ -30,7 +30,7 @@ tr td:last-child {
 }
 .button {
     @apply bg-blue-600 hover:bg-blue-700 focus:ring-blue-800 text-sm text-white  focus:outline-none focus:ring-4 font-medium rounded-full px-3 py-2 text-center;
-    @apply disabled:cursor-not-allowed disabled:bg-gray-500 duration-150;
+    @apply disabled:cursor-not-allowed disabled:bg-gray-500 disabled:hover:bg-gray-500 duration-150;
     @apply cursor-pointer;
 }
 .textarea {

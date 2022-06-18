@@ -16,8 +16,6 @@ export default {
             state.customers = payload;
         },
         setCustomer(state, payload) {
-            console.log(payload);
-            state.customers.filter((item) => item._id === payload._id)[0];
             state.customers.forEach((item) => {
                 if (item._id === payload._id) {
                     for (const property in item) {

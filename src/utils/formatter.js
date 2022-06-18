@@ -1,4 +1,5 @@
 export const getEllipsisTxt = (str, n = 6) => {
+    return str;
     if (str.trim()) {
         return `${str.slice(0, n)}...${str.slice(str.length - n)}`;
     }

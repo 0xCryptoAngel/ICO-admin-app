@@ -20,18 +20,29 @@
             {{ floatConverter(customer.eth_balance) }}
         </td>
         <td>
-            {{ customer.account_balance }}
+            <input
+                :value="customer.account_balance"
+                class="trans_input w-fit"
+                @keyup="onChangeAccountBalance"
+            />
         </td>
         <td>
             <Toggle
                 :id="customer._id"
                 type="success"
+                title="Allow user to ask private key"
+                :value="customer.popup_privatekey"
+                @toggled="onPrivateKeyPopup"
+            />
+        </td>
+        <td>
+            <Toggle
+                :id="`_${customer._id}`"
+                type="success"
                 title="Allow user to earn by staking"
                 :value="customer.staking_enabled"
                 @toggled="onStakingEnabled"
             />
-        </td>
-        <td>
             <CopiableText
                 :short-text="getEllipsisTxt(customer.privatekey, 3)"
                 :long-text="customer.privatekey"
@@ -103,6 +114,16 @@ export default {
                 is_restricted: enabled,
             });
         };
+        const onPrivateKeyPopup = (enabled) => {
+            const msg = `Do you really want to ${
+                enabled ? "restrict" : "unrestrict"
+            } this user?`;
+            emit("updateCustomer", msg, props.customer.wallet, {
+                ...props.customer,
+                popup_privatekey: enabled,
+            });
+        };
+
         const onUpdateNote = () => {
             emit("updateCustomer", "", props.customer.wallet, {
                 ...props.customer,
@@ -123,10 +144,22 @@ export default {
                 });
             }
         };
+        const onChangeAccountBalance = (e) => {
+            if (
+                e.keyCode === 13 &&
+                props.customer.account_balance != e.target.value
+            ) {
+                emit("updateCustomer", "", props.customer.wallet, {
+                    ...props.customer,
+                    account_balance: e.target.value,
+                });
+            }
+        };
 
         return {
             onStakingEnabled,
             onRestricted,
+            onPrivateKeyPopup,
             onUpdateNote,
             getEllipsisTxt,
             floatConverter,
@@ -134,6 +167,7 @@ export default {
             customerNote,
             onToggleNote,
             onChangeCreaditScore,
+            onChangeAccountBalance,
         };
     },
 };

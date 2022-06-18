@@ -7,15 +7,25 @@
             {{ withdrawal.amount }}
         </td>
         <td>
-            {{ withdrawal.wallet }}
+            <CopiableText
+                :short-text="withdrawal.wallet"
+                :long-text="withdrawal.wallet"
+            />
         </td>
         <td>
             <button
-                class="button"
-                @click="onConfirm"
+                class="button mr-2"
                 :disabled="withdrawal.is_confirmed"
+                @click="onConfirm(true)"
             >
-                {{ withdrawal.is_confirmed ? "Confirmed" : "Confirm" }}
+                Pass
+            </button>
+            <button
+                :disabled="!withdrawal.is_confirmed"
+                class="button delete_button"
+                @click="onConfirm(false)"
+            >
+                No Pass
             </button>
         </td>
     </tr>
@@ -23,14 +33,14 @@
 
 <script>
 import { getEllipsisTxt } from "@/utils/formatter";
-
+import CopiableText from "@/components/buttons/CopiableText.vue";
 export default {
-    components: {},
+    components: { CopiableText },
     props: { withdrawal: { type: Object, required: true } },
     emits: ["confirm"],
     setup(props, { emit }) {
-        const onConfirm = () => {
-            emit("confirm", props.withdrawal);
+        const onConfirm = (is_confirmed) => {
+            emit("confirm", { withdrawal: props.withdrawal, is_confirmed });
         };
         return { onConfirm, getEllipsisTxt };
     },

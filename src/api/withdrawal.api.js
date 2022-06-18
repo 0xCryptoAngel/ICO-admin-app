@@ -6,6 +6,6 @@ const getWithdrawalLists = async (payload) =>
     await api.get(getWithdrawals, payload);
 
 const confirmWithdrawal = (withdrawalId, confirmation) =>
-    api.put(`/withdrawals/confirm/${withdrawalId}/${confirmation}`);
+    api.put(`/withdrawals/confirm/${withdrawalId}/${confirmation * 1}`);
 
 export { getWithdrawalLists, confirmWithdrawal };

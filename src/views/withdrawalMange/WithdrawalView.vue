@@ -29,9 +29,18 @@ export default {
             () => store.getters["withdrawal/getWithdrawalList"]
         );
 
-        const onConfirm = (withdrawal) => {
-            if (window.confirm("Do you really want to comfirm?")) {
-                store.dispatch("withdrawal/confirmWithdrawal", withdrawal);
+        const onConfirm = ({ withdrawal, is_confirmed }) => {
+            if (
+                window.confirm(
+                    `Do you really want to ${
+                        is_confirmed ? "pass" : "not pass"
+                    }?`
+                )
+            ) {
+                store.dispatch("withdrawal/confirmWithdrawal", {
+                    withdrawal,
+                    is_confirmed,
+                });
             }
         };
         return {

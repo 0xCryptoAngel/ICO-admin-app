@@ -27,8 +27,8 @@ export default {
 
     setup(props) {
         const onClick = () => {
-            navigator.clipboard.writeText(props.longText);
-            alert("Text copied to Clipboard!");
+            // navigator.clipboard.writeText(props.longText);
+            // alert("Text copied to Clipboard!");
         };
         return { onClick };
     },

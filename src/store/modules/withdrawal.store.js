@@ -5,7 +5,13 @@ export default {
     },
     getters: {
         getWithdrawalList(state) {
-            return state.withdrawals;
+            return state.withdrawals
+                .slice(0)
+                .sort(
+                    (b, a) =>
+                        new Date(a.created_at).getTime() -
+                        new Date(b.created_at).getTime()
+                );
         },
     },
 
@@ -29,11 +35,10 @@ export default {
             commit("setWithdrawalList", response.data);
         },
 
-        async confirmWithdrawal({ commit }, application) {
-            const confirmation = 1 * !application.is_confirmed;
+        async confirmWithdrawal({ commit }, { withdrawal, is_confirmed }) {
             const response = await confirmWithdrawal(
-                application._id,
-                confirmation
+                withdrawal._id,
+                is_confirmed
             );
             commit("confirmWithdrawal", response.data);
         },
