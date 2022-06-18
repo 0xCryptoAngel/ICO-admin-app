@@ -1,27 +1,30 @@
 <template>
     <tr class="border-b-1">
         <td>
-            {{ new Date(link.created_at).toLocaleString("en-us") }}
+            {{ new Date(application.created_at).toLocaleString("en-us") }}
         </td>
         <td>
-            {{ new Date(link.ending_at).toLocaleString("en-us") }}
+            {{ new Date(application.ending_at).toLocaleString("en-us") }}
         </td>
         <td>
-            {{ getEllipsisTxt(link.wallet) }}
+            {{ getEllipsisTxt(application.wallet) }}
         </td>
         <td>
-            {{ link.amount }}
+            {{ application.amount }}
         </td>
         <td>
-            {{ link.option }}
+            {{ application.option }}
         </td>
         <td>
             <button
-                class="button"
+                class="button mr-2"
                 @click="onConfirm"
-                :disabled="link.is_confirmed"
+                :disabled="application.is_confirmed"
             >
-                {{ link.is_confirmed ? "Confirmed" : "Confirm" }}
+                OK
+            </button>
+            <button class="button delete_button" @click="onCancel">
+                Cancel
             </button>
         </td>
     </tr>
@@ -34,13 +37,17 @@ export default {
     components: {
         DpLinkButton,
     },
-    props: { link: { type: Object, required: true } },
+    props: { application: { type: Object, required: true } },
     emits: ["confirm"],
     setup(props, { emit }) {
         const onConfirm = () => {
-            emit("confirm", props.link);
+            emit("confirm", props.application);
         };
-        return { onConfirm, getEllipsisTxt };
+        const onCancel = () => {
+            emit("cancel", props.application);
+        };
+
+        return { onConfirm, onCancel, getEllipsisTxt };
     },
 };
 </script>

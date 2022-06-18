@@ -10,7 +10,6 @@
             <input
                 :value="customer.creadit_score"
                 class="trans_input w-fit"
-                id="creadit_score"
                 @keyup="onChangeCreaditScore"
             />
         </td>

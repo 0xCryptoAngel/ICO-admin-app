@@ -3,6 +3,7 @@
         <div class="flex flex-col w-full bg-white rounded-3xl px-4 py-4">
             <staking-application-table
                 @confirm="onConfirm"
+                @cancel="onCancel"
                 :applications-data="applicationsData"
             />
         </div>
@@ -36,9 +37,15 @@ export default {
             }
         };
 
+        const onCancel = (application) => {
+            if (window.confirm("Do you really want to cancel?")) {
+                store.dispatch("staking/cancelApplication", application);
+            }
+        };
         return {
             applicationsData,
             onConfirm,
+            onCancel,
         };
     },
 };

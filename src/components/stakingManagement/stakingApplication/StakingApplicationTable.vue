@@ -14,9 +14,9 @@
             <tbody class="divide-y">
                 <StakingApplicationRow
                     v-bind="$attrs"
-                    v-for="(link, index) in applicationsData"
+                    v-for="(application, index) in applicationsData"
                     :key="index"
-                    :link="link"
+                    :application="application"
                 />
             </tbody>
         </table>

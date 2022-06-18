@@ -2,7 +2,7 @@
     <page-wrapper title="Staking Categories">
         <div class="flex flex-col w-full bg-white rounded-3xl px-4 py-4">
             <staking-category-table
-                @editCategory="onEditCategory"
+                @updateCategory="onUpdateCategory"
                 @deleteCategory="onDeleteCategory"
                 :categories-data="categoriesData"
             />
@@ -31,8 +31,8 @@ export default {
             () => store.getters["staking/getStakingOptions"]
         );
 
-        const onEditCategory = (category) => {
-            console.log(category);
+        const onUpdateCategory = (category) => {
+            store.dispatch("staking/updateStakingOption", category);
         };
         const onDeleteCategory = (category) => {
             console.log(category);
@@ -40,7 +40,7 @@ export default {
 
         return {
             categoriesData,
-            onEditCategory,
+            onUpdateCategory,
             onDeleteCategory,
         };
     },
