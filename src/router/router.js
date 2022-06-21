@@ -73,10 +73,10 @@ const routes = [
         },
     },
     {
-        path: "/staking/bettinginformation",
-        name: "bettinginformation",
+        path: "/staking/application/?confirmed=1",
+        name: "confirmed-staking-categories",
         component: () =>
-            import("@/views/stakingManagement/WagerBettingInformation.vue"),
+            import("@/views/stakingManagement/StakingApplications.vue"),
         meta: {
             title: "BettingInformation",
         },

@@ -1,10 +1,16 @@
 <template>
-    <page-wrapper title="Staking Applications">
+    <page-wrapper
+        :title="confirmed ? 'Wager Management' : 'Staking Applications'"
+    >
         <div class="flex flex-col w-full bg-white rounded-3xl px-4 py-4">
             <staking-application-table
                 @confirm="onConfirm"
                 @cancel="onCancel"
-                :applications-data="applicationsData"
+                :applications-data="
+                    applicationsData?.filter(
+                        (item) => !confirmed || item.is_confirmed == true
+                    )
+                "
             />
         </div>
     </page-wrapper>
@@ -13,8 +19,9 @@
 <script>
 import PageWrapper from "@/components/PageWrapper.vue";
 import StakingApplicationTable from "../../components/stakingManagement/stakingApplication/StakingApplicationTable.vue";
-import { computed, onMounted } from "@vue/runtime-core";
+import { computed, onMounted, ref, watch } from "@vue/runtime-core";
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 
 export default {
     components: {
@@ -23,6 +30,9 @@ export default {
     },
     setup() {
         const store = useStore();
+        const route = useRoute();
+        const confirmed = computed(() => route.name.includes("confirmed"));
+
         onMounted(async () => {
             store.dispatch("staking/fetchStakingInformations");
         });
@@ -46,6 +56,7 @@ export default {
             applicationsData,
             onConfirm,
             onCancel,
+            confirmed,
         };
     },
 };

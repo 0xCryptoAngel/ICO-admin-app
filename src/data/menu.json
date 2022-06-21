@@ -24,8 +24,8 @@
                     "icon_active": "drivers_active"
                 },
                 {
-                    "title": "User betting information",
-                    "pathName": "bettinginformation",
+                    "title": "Wager Management",
+                    "pathName": "confirmed-staking-categories",
                     "icon": "drivers",
                     "icon_active": "drivers_active"
                 }
