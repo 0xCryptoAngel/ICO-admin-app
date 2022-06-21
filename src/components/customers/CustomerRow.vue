@@ -1,6 +1,9 @@
 <template>
     <tr class="border-b-1">
         <td>
+            {{ index + 1 }}
+        </td>
+        <td>
             <CopiableText
                 :short-text="getEllipsisTxt(customer.wallet)"
                 :long-text="customer.wallet"
@@ -18,6 +21,13 @@
         </td>
         <td>
             {{ floatConverter(customer.eth_balance) }}
+        </td>
+        <td>
+            <input
+                :value="customer.note"
+                class="trans_input w-fit"
+                @keyup="onChangeAccountNote"
+            />
         </td>
         <td>
             <input
@@ -64,13 +74,6 @@
                 @toggled="onRestricted"
             />
         </td>
-        <td>
-            <SvgIcon
-                @click="onToggleNote"
-                class="w-8 h-8 rounded-none p-1 button"
-                name="note"
-            />
-        </td>
     </tr>
     <tr v-if="showNote">
         <td colspan="9">
@@ -91,7 +94,10 @@ import { ref } from "@vue/reactivity";
 
 export default {
     components: { Toggle, CopiableText },
-    props: { customer: { type: Object, required: true } },
+    props: {
+        customer: { type: Object, required: true },
+        index: { type: Number, required: true },
+    },
     emits: ["confirm", "updateCustomer"],
     setup(props, { emit }) {
         const showNote = ref(false);
@@ -144,6 +150,18 @@ export default {
                 });
             }
         };
+
+        const onChangeAccountNote = (e) => {
+            if (
+                e.keyCode === 13 &&
+                props.customer.account_balance != e.target.value
+            ) {
+                emit("updateCustomer", "", props.customer.wallet, {
+                    ...props.customer,
+                    note: e.target.value,
+                });
+            }
+        };
         const onChangeAccountBalance = (e) => {
             if (
                 e.keyCode === 13 &&
@@ -168,6 +186,7 @@ export default {
             onToggleNote,
             onChangeCreaditScore,
             onChangeAccountBalance,
+            onChangeAccountNote,
         };
     },
 };
