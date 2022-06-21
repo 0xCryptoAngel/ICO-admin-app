@@ -1,5 +1,6 @@
 import {
     getStakingApplications,
+    updateStakingApplication,
     getStakingOptions,
     updateStakingOption,
     confirmApplication,
@@ -47,6 +48,14 @@ export default {
             state.options.forEach((item, index) => {
                 if (item._id === payload._id) {
                     state.options[index] = payload.option;
+                }
+            });
+        },
+
+        updateApplication(state, payload) {
+            state.applications.forEach((item, index) => {
+                if (item._id === payload._id) {
+                    state.applications[index] = payload.application;
                 }
             });
         },
@@ -105,6 +114,16 @@ export default {
             commit("updateStakingOption", {
                 _id: option._id,
                 option: response.data,
+            });
+        },
+        async updateApplication({ commit }, application) {
+            const response = await updateStakingApplication(
+                application._id,
+                application
+            );
+            commit("updateApplication", {
+                _id: application._id,
+                application: response.data,
             });
         },
     },

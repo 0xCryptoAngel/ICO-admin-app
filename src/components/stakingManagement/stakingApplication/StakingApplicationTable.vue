@@ -8,6 +8,7 @@
                     <th>Address</th>
                     <th>Amount</th>
                     <th>Category</th>
+                    <th>Pause</th>
                     <th>Action</th>
                 </tr>
             </thead>

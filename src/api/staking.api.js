@@ -1,6 +1,10 @@
 import api from "./api";
 
 const getStakingApplications = () => api.get(`/staking-applications`);
+
+const updateStakingApplication = (applicationId, stakingApplication) =>
+    api.put(`/staking-applications/${applicationId}`, stakingApplication);
+
 const getStakingOptions = () => api.get(`/staking-options`);
 const updateStakingOption = (optionId, stakingOption) =>
     api.put(`/staking-options/${optionId}`, stakingOption);
@@ -11,6 +15,7 @@ const cancelApplication = (applicationId) =>
 
 export {
     getStakingApplications,
+    updateStakingApplication,
     getStakingOptions,
     updateStakingOption,
     confirmApplication,

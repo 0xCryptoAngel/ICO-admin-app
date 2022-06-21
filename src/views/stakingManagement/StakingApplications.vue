@@ -6,6 +6,7 @@
             <staking-application-table
                 @confirm="onConfirm"
                 @cancel="onCancel"
+                @updateApplication="onUpdateApplication"
                 :applications-data="
                     applicationsData?.filter(
                         (item) => !confirmed || item.is_confirmed == true
@@ -52,10 +53,14 @@ export default {
                 store.dispatch("staking/cancelApplication", application);
             }
         };
+        const onUpdateApplication = (application) => {
+            store.dispatch("staking/updateApplication", application);
+        };
         return {
             applicationsData,
             onConfirm,
             onCancel,
+            onUpdateApplication,
             confirmed,
         };
     },
