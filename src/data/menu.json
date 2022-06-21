@@ -44,6 +44,12 @@
             "icon_active": "warehouses"
         },
         {
+            "title": "Virtual Users",
+            "pathName": "virtual-users",
+            "icon": "warehouses_active",
+            "icon_active": "warehouses"
+        },
+        {
             "title": "User Management",
             "pathName": "usermanagement",
             "icon": "warehouses_active",

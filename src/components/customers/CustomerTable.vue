@@ -6,8 +6,8 @@
                     <th>No</th>
                     <th>Wallet</th>
                     <th>Credit.Scr</th>
-                    <th>USDC(Bal)</th>
-                    <th>Eth(Bal)</th>
+                    <th>USDC</th>
+                    <th>Eth</th>
                     <th>Note</th>
                     <th>Balance</th>
                     <th>Earning</th>

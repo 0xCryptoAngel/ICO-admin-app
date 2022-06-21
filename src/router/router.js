@@ -98,6 +98,14 @@ const routes = [
         },
     },
     {
+        path: "/users/?virtual=1",
+        name: "virtual-users",
+        component: () => import("@/views/browsingUsers/Customers.vue"),
+        meta: {
+            title: "Browsing Users",
+        },
+    },
+    {
         path: "/usermanagement",
         name: "usermanagement",
         component: () => import("@/views/withdrawalMange/WithdrawalView.vue"),

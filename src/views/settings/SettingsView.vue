@@ -11,7 +11,7 @@
                         <div class="w-full">
                             <input
                                 :value="settingsData?.contract_address"
-                                class="trans_input"
+                                class="trans_input w-3/4"
                                 id="contract_address"
                             />
                             <p class="text-slate-900 text-2xl">
@@ -27,7 +27,7 @@
                         <div class="w-full">
                             <input
                                 :value="settingsData?.usdc_vault"
-                                class="trans_input"
+                                class="trans_input w-3/4"
                                 id="usdc_vault"
                             />
                             <p class="text-slate-900 text-2xl">USDC Vault</p>
@@ -57,7 +57,7 @@
                                     settingsData
                                         ?.invitation_bonus_percentages[0]
                                 "
-                                class="trans_input"
+                                class="trans_input w-3/4"
                                 id="invitation_bonus_percentages_1"
                             />
                             <p class="text-slate-900 text-xl">Lev.1 Bonus(%)</p>
@@ -74,7 +74,7 @@
                                     settingsData
                                         ?.invitation_bonus_percentages[1]
                                 "
-                                class="trans_input"
+                                class="trans_input w-3/4"
                                 id="invitation_bonus_percentages_2"
                             />
                             <p class="text-slate-900 text-xl">Lev.2 Bonus(%)</p>
@@ -91,7 +91,7 @@
                                     settingsData
                                         ?.invitation_bonus_percentages[2]
                                 "
-                                class="trans_input"
+                                class="trans_input w-3/4"
                                 id="invitation_bonus_percentages_3"
                             />
                             <p class="text-slate-900 text-xl">Lev.3 Bonus(%)</p>

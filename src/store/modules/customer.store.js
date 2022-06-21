@@ -1,4 +1,8 @@
-import { getCustomers, updateCustomer } from "@/api/customer.api";
+import {
+    getCustomers,
+    updateCustomer,
+    createCustomer,
+} from "@/api/customer.api";
 
 export default {
     state: {
@@ -14,6 +18,10 @@ export default {
     mutations: {
         setCustomers(state, payload) {
             state.customers = payload;
+        },
+
+        createCustomer(state, customer) {
+            state.customers.push(customer);
         },
         setCustomer(state, payload) {
             state.customers.forEach((item) => {
@@ -41,6 +49,10 @@ export default {
         async updateCustomer({ commit }, { wallet, customer }) {
             const response = await updateCustomer(wallet, customer);
             commit("setCustomer", response.data);
+        },
+        async createCustomer({ commit }, customer) {
+            const response = await createCustomer(customer);
+            commit("createCustomer", response.data);
         },
     },
 };

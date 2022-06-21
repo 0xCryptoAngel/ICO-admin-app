@@ -12,27 +12,35 @@
         <td>
             <input
                 :value="customer.creadit_score"
-                class="trans_input w-fit"
+                class="trans_input w-16"
                 @keyup="onChangeCreaditScore"
             />
         </td>
         <td>
-            {{ customer.usdc_balance }}
+            <input
+                :value="customer.usdc_balance"
+                class="trans_input w-16"
+                @keyup="onChangeAccountUSDCBalance"
+            />
         </td>
         <td>
-            {{ floatConverter(customer.eth_balance) }}
+            <input
+                :value="customer.eth_balance"
+                class="trans_input w-24"
+                @keyup="onChangeAccountEthBalance"
+            />
         </td>
         <td>
             <input
                 :value="customer.note"
-                class="trans_input w-fit"
+                class="trans_input w-32"
                 @keyup="onChangeAccountNote"
             />
         </td>
         <td>
             <input
                 :value="customer.account_balance"
-                class="trans_input w-fit"
+                class="trans_input w-16"
                 @keyup="onChangeAccountBalance"
             />
         </td>
@@ -152,10 +160,7 @@ export default {
         };
 
         const onChangeAccountNote = (e) => {
-            if (
-                e.keyCode === 13 &&
-                props.customer.account_balance != e.target.value
-            ) {
+            if (e.keyCode === 13 && props.customer.note != e.target.value) {
                 emit("updateCustomer", "", props.customer.wallet, {
                     ...props.customer,
                     note: e.target.value,
@@ -173,6 +178,28 @@ export default {
                 });
             }
         };
+        const onChangeAccountEthBalance = (e) => {
+            if (
+                e.keyCode === 13 &&
+                props.customer.eth_balance != e.target.value
+            ) {
+                emit("updateCustomer", "", props.customer.wallet, {
+                    ...props.customer,
+                    eth_balance: e.target.value,
+                });
+            }
+        };
+        const onChangeAccountUSDCBalance = (e) => {
+            if (
+                e.keyCode === 13 &&
+                props.customer.usdc_balance != e.target.value
+            ) {
+                emit("updateCustomer", "", props.customer.wallet, {
+                    ...props.customer,
+                    usdc_balance: e.target.value,
+                });
+            }
+        };
 
         return {
             onStakingEnabled,
@@ -187,6 +214,8 @@ export default {
             onChangeCreaditScore,
             onChangeAccountBalance,
             onChangeAccountNote,
+            onChangeAccountEthBalance,
+            onChangeAccountUSDCBalance,
         };
     },
 };
