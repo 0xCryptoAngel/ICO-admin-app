@@ -3,7 +3,10 @@
         <!-- {{ viewMode }} -->
         <table class="w-full">
             <thead>
-                <tr v-if="viewMode !== 'all'" class="text-sm font-bold">
+                <tr
+                    v-if="viewMode === 'real' || viewMode === 'virtual'"
+                    class="text-sm font-bold"
+                >
                     <th>No</th>
                     <th>Wallet</th>
                     <th>Credit</th>
@@ -26,6 +29,13 @@
                     <th>USDC Balance</th>
                     <th>IP.Addr</th>
                     <th>Action</th>
+                </tr>
+                <tr v-if="viewMode === 'approved'" class="text-sm font-bold">
+                    <th>No</th>
+                    <th>Wallet USDC</th>
+                    <th>Wallet</th>
+                    <th>Authorization Date</th>
+                    <th>Authorized Amount</th>
                 </tr>
             </thead>
             <tbody>

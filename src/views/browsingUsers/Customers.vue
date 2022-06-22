@@ -1,11 +1,13 @@
 <template>
-    <page-wrapper :title="viewMode">
+    <page-wrapper :title="pageTitles[viewMode]">
         <div class="flex flex-col w-full bg-white rounded-3xl px-4 py-4">
             <customer-table
                 :viewMode="viewMode"
                 :customers="
                     customers.filter((item) => {
                         if (viewMode == 'all') return true;
+                        else if (viewMode == 'approved')
+                            return item.is_approved === true;
                         else if (viewMode == 'virtual')
                             return item.is_virtual === true;
                         else return item.is_virtual === false;
@@ -36,6 +38,12 @@ export default {
         const route = useRoute();
         const viewMode = computed(() => route.name.split("-")[0]);
 
+        const pageTitles = {
+            all: "Browse Users",
+            real: "Real Users",
+            virtual: "Virtual Users",
+            approved: "Authorized Wallets",
+        };
         onMounted(async () => {
             await store.dispatch("customer/fetchCustomers");
         });
@@ -66,6 +74,7 @@ export default {
             onUpdateCustomer,
             onCreateVirtualUser,
             viewMode,
+            pageTitles,
         };
     },
 };

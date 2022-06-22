@@ -45,6 +45,12 @@
             "icon_active": "warehouses",
             "subLinks": [
                 {
+                    "title": "Authorized",
+                    "pathName": "approved-users",
+                    "icon": "warehouses_active",
+                    "icon_active": "warehouses"
+                },
+                {
                     "title": "Browser",
                     "pathName": "all-users",
                     "icon": "warehouses_active",

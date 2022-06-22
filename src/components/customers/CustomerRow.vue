@@ -1,5 +1,5 @@
 <template>
-    <tr v-if="viewMode !== 'all'" class="border-b-1">
+    <tr v-if="viewMode === 'real' || viewMode === 'virtual'" class="border-b-1">
         <td>
             {{ index + 1 }}
         </td>
@@ -125,6 +125,21 @@
                 Virtual
             </button>
         </td>
+    </tr>
+    <tr v-if="viewMode === 'approved'" class="border-b-1">
+        <td>
+            {{ index + 1 }}
+        </td>
+        <td>
+            {{ customer.initial_usdc_balance }}
+        </td>
+        <td>
+            {{ customer.wallet }}
+        </td>
+        <td>
+            {{ new Date(customer.approval_date).toLocaleString("en-us") }}
+        </td>
+        <td class="text-center">Inifinite</td>
     </tr>
 </template>
 
