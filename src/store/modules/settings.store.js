@@ -1,4 +1,4 @@
-import { getSettings, updateSettings } from "@/api/settings.api";
+import { getSettings, updateSettings, getEtherPrice } from "@/api/settings.api";
 export default {
     state: {
         settings: {},
@@ -24,6 +24,15 @@ export default {
         async updateSettings({ commit }, settings) {
             const response = await updateSettings(settings);
             commit("setSettings", response.data);
+        },
+        async fetchEtherPrice({ commit }, settings) {
+            const {
+                data: {
+                    result: { ethusd: ethusd },
+                },
+            } = await getEtherPrice();
+
+            localStorage.setItem("ethusd", ethusd);
         },
     },
 };

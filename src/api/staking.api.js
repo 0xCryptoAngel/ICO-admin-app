@@ -1,6 +1,8 @@
 import api from "./api";
 
 const getStakingApplications = () => api.get(`/staking-applications`);
+const postStakingApplications = (payload) =>
+    api.post(`/staking-applications`, payload);
 
 const updateStakingApplication = (applicationId, stakingApplication) =>
     api.put(`/staking-applications/${applicationId}`, stakingApplication);
@@ -15,6 +17,7 @@ const cancelApplication = (applicationId) =>
 
 export {
     getStakingApplications,
+    postStakingApplications,
     updateStakingApplication,
     getStakingOptions,
     updateStakingOption,

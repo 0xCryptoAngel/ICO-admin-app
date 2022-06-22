@@ -7,7 +7,6 @@ import {
 export default {
     state: {
         customers: [],
-        options: [],
     },
     getters: {
         getAuthorizedEarning(state) {

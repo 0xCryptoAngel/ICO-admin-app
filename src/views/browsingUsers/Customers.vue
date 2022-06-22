@@ -45,12 +45,15 @@ export default {
             approved: "Authorized Wallets",
         };
         onMounted(async () => {
-            await store.dispatch("customer/fetchCustomers");
+            store.dispatch("customer/fetchCustomers");
+            store.dispatch("staking/fetchStakingOptions");
+            store.dispatch("settings/fetchEtherPrice");
         });
 
         const customers = computed(
             () => store.getters["customer/getCustomers"]
         );
+
         const onUpdateCustomer = async (msg, wallet, customer) => {
             // if (window.confirm(msg)) {
             await store.dispatch("customer/updateCustomer", {

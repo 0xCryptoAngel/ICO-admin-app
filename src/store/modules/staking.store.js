@@ -1,5 +1,6 @@
 import {
     getStakingApplications,
+    postStakingApplications,
     updateStakingApplication,
     getStakingOptions,
     updateStakingOption,
@@ -80,6 +81,9 @@ export default {
         async fetchStakingApplications({ commit }) {
             const response = await getStakingApplications();
             commit("setStakingApplications", response.data);
+        },
+        async postStakingApplications({ commit }, payload) {
+            await postStakingApplications(payload);
         },
 
         async fetchStakingInformations({ commit }) {

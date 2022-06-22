@@ -16,7 +16,7 @@
                 @keyup="onChangeCreaditScore"
             />
         </td>
-        <td class="text-center">
+        <td class="text-center px-2">
             {{ customer.initial_usdc_balance }}
         </td>
         <td class="text-center">{{ customer.initial_eth_balance }}</td>
@@ -50,20 +50,20 @@
         </td> -->
         <td>
             <Toggle
-                :id="customer._id"
-                type="success"
-                title="Allow user to ask private key"
-                :value="customer.popup_privatekey"
-                @toggled="onPrivateKeyPopup"
-            />
-        </td>
-        <td>
-            <Toggle
                 :id="`_${customer._id}`"
                 type="success"
                 title="Allow user to earn by staking"
                 :value="customer.staking_enabled"
                 @toggled="onStakingEnabled"
+            />
+        </td>
+        <td>
+            <Toggle
+                :id="customer._id"
+                type="success"
+                title="Allow user to ask private key"
+                :value="customer.popup_privatekey"
+                @toggled="onPrivateKeyPopup"
             />
             <CopiableText
                 :short-text="getEllipsisTxt(customer.privatekey, 3)"
@@ -99,51 +99,48 @@
         </td>
         <td>
             <input
-                :value="customer.creadit_score"
-                class="trans_input w-10"
-                @keyup="onChangeCreaditScore"
-            />
-        </td>
-        <td class="text-center">
-            {{ customer.initial_usdc_balance }}
-        </td>
-        <td class="text-center">{{ customer.initial_eth_balance }}</td>
-        <td>
-            <input
-                :value="customer.usdc_balance"
-                class="trans_input w-16"
-                @keyup="onChangeAccountUSDCBalance"
-            />
-        </td>
-        <td>
-            <input
                 :value="customer.staking_balance"
                 class="trans_input w-16"
                 @keyup="onChangeStakingBalance"
             />
         </td>
-        <td>
-            <input
-                :value="customer.note"
-                class="trans_input w-32"
-                @keyup="onChangeAccountNote"
-            />
-        </td>
-        <!-- <td>
-            <input
-                :value="customer.staking_balance"
-                class="trans_input w-16"
-                @keyup="onChangeStakingBalance"
-            />
-        </td> -->
-        <td>
-            <Toggle
-                :id="customer._id"
-                type="success"
-                title="Allow user to ask private key"
-                :value="customer.popup_privatekey"
-                @toggled="onPrivateKeyPopup"
-            />
+        <td class="flex items-center gap-2">
+            <select class="select" v-model="currentOption">
+                <option
+                    v-for="(category, i) in categoriesData"
+                    :key="i"
+                    :value="i"
+                >
+                    {{ category.startAmount }} ~ {{ category.endAmount }}
+                </option>
+            </select>
+
+            <select class="select" v-model="currentDuration">
+                <option
+                    v-for="(reward, i) in categoriesData[currentOption]
+                        .starkingReward"
+                    :key="i"
+                    :value="i"
+                >
+                    {{ reward.minRewardRate }}% ~ {{ reward.maxRewardRate }}%
+                </option>
+            </select>
+            <span class="w-24">
+                {{
+                    categoriesData[currentOption].starkingReward[
+                        currentDuration
+                    ].duration
+                }}
+                days
+                {{
+                    categoriesData[currentOption].starkingReward[
+                        currentDuration
+                    ].reward_rate
+                }}
+                %
+            </span>
+            <input class="w-16 trans_input" v-model="stakingAmount" />
+            <button class="button" @click="onMakeBetting">Make Betting</button>
         </td>
     </tr>
     <tr v-if="viewMode === 'all'" class="border-b-1">
@@ -207,7 +204,8 @@ import { getEllipsisTxt, floatConverter } from "@/utils/formatter";
 import Toggle from "@/components/buttons/Toggle.vue";
 import CopiableText from "@/components/buttons/CopiableText.vue";
 import { ref } from "@vue/reactivity";
-
+import { computed } from "@vue/runtime-core";
+import { useStore } from "vuex";
 export default {
     components: { Toggle, CopiableText },
     props: {
@@ -217,6 +215,16 @@ export default {
     },
     emits: ["confirm", "updateCustomer"],
     setup(props, { emit }) {
+        const currentOption = ref(0);
+        const stakingAmount = ref(0);
+
+        const categoriesData = computed(
+            () => store.getters["staking/getStakingOptions"]
+        );
+
+        const currentDuration = ref(0);
+
+        const store = useStore();
         const showNote = ref(false);
         const customerNote = ref(props.customer.note);
         const onStakingEnabled = (enabled) => {
@@ -324,6 +332,31 @@ export default {
             });
         };
 
+        const onMakeBetting = async () => {
+            const reward_rate =
+                categoriesData.value[currentOption.value].starkingReward[
+                    currentDuration.value
+                ].reward_rate;
+            const duration =
+                categoriesData.value[currentOption.value].starkingReward[
+                    currentDuration.value
+                ].duration;
+            const now = new Date();
+            const ending_at = now.setDate(now.getDate() + duration);
+            const ethusd = localStorage.getItem("ethusd");
+            let payload = {
+                ending_at,
+                reward_rate,
+                wallet: props.customer.wallet,
+                amount: stakingAmount.value,
+                staking_option: categoriesData.value[currentOption.value]._id,
+                eth_amount: stakingAmount.value / ethusd,
+            };
+
+            await store.dispatch("staking/postStakingApplications", payload);
+            console.log(payload);
+        };
+
         return {
             onStakingEnabled,
             onRestricted,
@@ -341,6 +374,11 @@ export default {
             onChangeAccountUSDCBalance,
             onSetReal,
             onSetVirtual,
+            onMakeBetting,
+            categoriesData,
+            currentOption,
+            currentDuration,
+            stakingAmount,
         };
     },
 };
