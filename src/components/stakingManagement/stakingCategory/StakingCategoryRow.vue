@@ -1,7 +1,19 @@
 <template>
     <tr class="border-b-1">
-        <td>${{ category.startAmount }}</td>
-        <td>${{ category.endAmount }}</td>
+        <td>
+            <input
+                :value="category.startAmount"
+                class="trans_input w-20"
+                @keyup="onUpdateStartingAmount"
+            />
+        </td>
+        <td>
+            <input
+                :value="category.endAmount"
+                class="trans_input w-20"
+                @keyup="onUpdateEndAmount"
+            />
+        </td>
         <td class="flex w-40 justify-between">
             <select
                 class="select"
@@ -22,7 +34,7 @@
             <input
                 v-model="currentRate"
                 class="trans_input w-20"
-                @keyup="onUpdate"
+                @keyup="onUpdateRewardRate"
             />
         </td>
         <td>
@@ -33,7 +45,7 @@
             </select>
         </td>
         <td>
-            <!-- <button class="button edit_button" @click="onUpdate">Update</button> -->
+            <!-- <button class="button edit_button" @click="onUpdateRewardRate">Update</button> -->
             <button class="button delete_button" @click="onDelete">
                 Delete
             </button>
@@ -55,7 +67,7 @@ export default {
                 props.category?.starkingReward[currentDuration.value]
                     .reward_rate
         );
-        const onUpdate = (e) => {
+        const onUpdateRewardRate = (e) => {
             if (e.keyCode === 13) {
                 const updatedCategory = toRaw(props.category);
                 updatedCategory.starkingReward[
@@ -68,12 +80,29 @@ export default {
             emit("deleteCategory", props.category);
         };
 
+        const onUpdateStartingAmount = (e) => {
+            if (e.keyCode === 13) {
+                const updatedCategory = toRaw(props.category);
+                updatedCategory.startAmount = e.target.value;
+                emit("updateCategory", updatedCategory);
+            }
+        };
+        const onUpdateEndAmount = (e) => {
+            if (e.keyCode === 13) {
+                const updatedCategory = toRaw(props.category);
+                updatedCategory.endAmount = e.target.value;
+                emit("updateCategory", updatedCategory);
+            }
+        };
+
         return {
-            onUpdate,
+            onUpdateRewardRate,
             onDelete,
             currentDuration,
             currentRate,
             getEllipsisTxt,
+            onUpdateStartingAmount,
+            onUpdateEndAmount,
         };
     },
 };
