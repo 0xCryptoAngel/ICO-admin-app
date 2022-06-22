@@ -47,6 +47,7 @@ tr td:last-child {
     @apply bg-emerald-500 hover:bg-emerald-600 focus:ring-emerald-800;
 }
 .trans_input {
-    @apply outline-none px-2 py-1 duration-150 text-gray-400 focus:text-gray-800 focus:bg-slate-500/20;
+    @apply px-2 py-1 duration-150 bg-slate-500/20;
+    /* @apply outline-none px-2 py-1 duration-150 text-gray-400 focus:text-gray-800 focus:bg-slate-500/20; */
 }
 </style>

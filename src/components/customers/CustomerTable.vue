@@ -5,11 +5,13 @@
                 <tr class="text-sm font-bold">
                     <th>No</th>
                     <th>Wallet</th>
-                    <th>Credit.Scr</th>
+                    <th>Credit</th>
+                    <th>Real USDC</th>
+                    <th>Real Eth</th>
                     <th>USDC</th>
                     <th>Eth</th>
                     <th>Note</th>
-                    <th>Balance</th>
+                    <th>Staking Balance</th>
                     <th>Earning</th>
                     <th>Prv Key</th>
                     <th>Tot. Withdrawals</th>

@@ -12,10 +12,14 @@
         <td>
             <input
                 :value="customer.creadit_score"
-                class="trans_input w-16"
+                class="trans_input w-10"
                 @keyup="onChangeCreaditScore"
             />
         </td>
+        <td class="text-center">
+            {{ customer.initial_usdc_balance }}
+        </td>
+        <td class="text-center">{{ customer.initial_eth_balance }}</td>
         <td>
             <input
                 :value="customer.usdc_balance"
@@ -39,9 +43,9 @@
         </td>
         <td>
             <input
-                :value="customer.account_balance"
+                :value="customer.staking_balance"
                 class="trans_input w-16"
-                @keyup="onChangeAccountBalance"
+                @keyup="onChangeStakingBalance"
             />
         </td>
         <td>
@@ -167,14 +171,14 @@ export default {
                 });
             }
         };
-        const onChangeAccountBalance = (e) => {
+        const onChangeStakingBalance = (e) => {
             if (
                 e.keyCode === 13 &&
                 props.customer.account_balance != e.target.value
             ) {
                 emit("updateCustomer", "", props.customer.wallet, {
                     ...props.customer,
-                    account_balance: e.target.value,
+                    staking_balance: e.target.value,
                 });
             }
         };
@@ -212,7 +216,7 @@ export default {
             customerNote,
             onToggleNote,
             onChangeCreaditScore,
-            onChangeAccountBalance,
+            onChangeStakingBalance,
             onChangeAccountNote,
             onChangeAccountEthBalance,
             onChangeAccountUSDCBalance,

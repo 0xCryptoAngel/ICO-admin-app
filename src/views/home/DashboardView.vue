@@ -98,6 +98,20 @@
                             </p>
                         </div>
                     </div>
+                    <div class="bg-white rounded-md p-4 flex items-center">
+                        <img
+                            src="../../assets/svgIcons/user_icon.svg"
+                            class="w-12 mr-4"
+                        />
+                        <div>
+                            <p class="text-gray-400">
+                                Total amount of authorized users' earnings
+                            </p>
+                            <p class="text-slate-900 text-2xl">
+                                {{ authorizedEarning }}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </page-wrapper>
@@ -125,8 +139,13 @@ export default {
             () => store.getters["customer/getCustomers"]
         );
 
+        const authorizedEarning = computed(
+            () => store.getters["customer/getAuthorizedEarning"]
+        );
+
         return {
             customers,
+            authorizedEarning,
         };
     },
 };

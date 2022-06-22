@@ -10,6 +10,9 @@ export default {
         options: [],
     },
     getters: {
+        getAuthorizedEarning(state) {
+            return state.customers.length;
+        },
         getCustomers(state) {
             return state.customers;
         },
