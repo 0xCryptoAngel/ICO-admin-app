@@ -37,17 +37,26 @@
             "icon": "warehouses_active",
             "icon_active": "warehouses"
         },
+
         {
             "title": "Users",
-            "pathName": "users",
+            "pathName": "",
             "icon": "warehouses_active",
-            "icon_active": "warehouses"
-        },
-        {
-            "title": "Virtual Users",
-            "pathName": "virtual-users",
-            "icon": "warehouses_active",
-            "icon_active": "warehouses"
+            "icon_active": "warehouses",
+            "subLinks": [
+                {
+                    "title": "Real",
+                    "pathName": "users",
+                    "icon": "warehouses_active",
+                    "icon_active": "warehouses"
+                },
+                {
+                    "title": "Virtual",
+                    "pathName": "virtual-users",
+                    "icon": "warehouses_active",
+                    "icon_active": "warehouses"
+                }
+            ]
         },
         {
             "title": "User Management",
