@@ -24,7 +24,7 @@
                     "icon_active": "drivers_active"
                 },
                 {
-                    "title": "Wager Management",
+                    "title": "Wager",
                     "pathName": "confirmed-staking-categories",
                     "icon": "drivers",
                     "icon_active": "drivers_active"
@@ -45,8 +45,14 @@
             "icon_active": "warehouses",
             "subLinks": [
                 {
+                    "title": "Browser",
+                    "pathName": "all-users",
+                    "icon": "warehouses_active",
+                    "icon_active": "warehouses"
+                },
+                {
                     "title": "Real",
-                    "pathName": "users",
+                    "pathName": "real-users",
                     "icon": "warehouses_active",
                     "icon_active": "warehouses"
                 },

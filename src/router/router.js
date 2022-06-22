@@ -91,7 +91,15 @@ const routes = [
     },
     {
         path: "/users",
-        name: "users",
+        name: "all-users",
+        component: () => import("@/views/browsingUsers/Customers.vue"),
+        meta: {
+            title: "Browsing Users",
+        },
+    },
+    {
+        path: "/users/?virtual=0",
+        name: "real-users",
         component: () => import("@/views/browsingUsers/Customers.vue"),
         meta: {
             title: "Browsing Users",

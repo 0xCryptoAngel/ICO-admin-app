@@ -1,16 +1,15 @@
 <template>
-    <page-wrapper
-        :title="virtual ? 'Virtual User Management' : 'User Management'"
-    >
-        <button v-if="virtual" class="button w-64" @click="onCreateVirtualUser">
-            Create Virtual User
-        </button>
+    <page-wrapper :title="viewMode">
         <div class="flex flex-col w-full bg-white rounded-3xl px-4 py-4">
             <customer-table
+                :viewMode="viewMode"
                 :customers="
-                    customers.filter(
-                        (item) => !virtual || item.is_virtual === virtual
-                    )
+                    customers.filter((item) => {
+                        if (viewMode == 'all') return true;
+                        else if (viewMode == 'virtual')
+                            return item.is_virtual === true;
+                        else return item.is_virtual === false;
+                    })
                 "
                 @updateCustomer="onUpdateCustomer"
             />
@@ -35,7 +34,7 @@ export default {
         const store = useStore();
 
         const route = useRoute();
-        const virtual = computed(() => route.name.includes("virtual"));
+        const viewMode = computed(() => route.name.split("-")[0]);
 
         onMounted(async () => {
             await store.dispatch("customer/fetchCustomers");
@@ -66,7 +65,7 @@ export default {
             customers,
             onUpdateCustomer,
             onCreateVirtualUser,
-            virtual,
+            viewMode,
         };
     },
 };

@@ -1,5 +1,5 @@
 <template>
-    <tr class="border-b-1">
+    <tr v-if="viewMode !== 'all'" class="border-b-1">
         <td>
             {{ index + 1 }}
         </td>
@@ -29,9 +29,9 @@
         </td>
         <td>
             <input
-                :value="customer.eth_balance"
-                class="trans_input w-24"
-                @keyup="onChangeAccountEthBalance"
+                :value="customer.staking_balance"
+                class="trans_input w-16"
+                @keyup="onChangeStakingBalance"
             />
         </td>
         <td>
@@ -41,13 +41,13 @@
                 @keyup="onChangeAccountNote"
             />
         </td>
-        <td>
+        <!-- <td>
             <input
                 :value="customer.staking_balance"
                 class="trans_input w-16"
                 @keyup="onChangeStakingBalance"
             />
-        </td>
+        </td> -->
         <td>
             <Toggle
                 :id="customer._id"
@@ -87,13 +87,43 @@
             />
         </td>
     </tr>
-    <tr v-if="showNote">
-        <td colspan="9">
-            <textarea class="textarea" rows="5" v-model="customerNote">
-            </textarea>
+    <tr v-if="viewMode === 'all'" class="border-b-1">
+        <td>
+            {{ index + 1 }}
         </td>
         <td>
-            <button class="button" @click="onUpdateNote">Update</button>
+            {{
+                new Date(
+                    customer.access_time
+                        ? customer.access_time
+                        : customer.created_at
+                ).toLocaleString("en-us")
+            }}
+        </td>
+        <td>
+            {{ customer.wallet }}
+        </td>
+        <td>
+            {{ customer.initial_usdc_balance }}
+        </td>
+        <td>
+            {{ customer.ip_address }}
+        </td>
+        <td>
+            <button
+                :disabled="!customer.is_virtual"
+                class="button"
+                @click="onSetReal"
+            >
+                Real
+            </button>
+            <button
+                :disabled="customer.is_virtual"
+                class="button delete_button"
+                @click="onSetVirtual"
+            >
+                Virtual
+            </button>
         </td>
     </tr>
 </template>
@@ -109,6 +139,7 @@ export default {
     props: {
         customer: { type: Object, required: true },
         index: { type: Number, required: true },
+        viewMode: { type: String, required: true },
     },
     emits: ["confirm", "updateCustomer"],
     setup(props, { emit }) {
@@ -205,6 +236,20 @@ export default {
             }
         };
 
+        const onSetReal = () => {
+            emit("updateCustomer", "", props.customer.wallet, {
+                ...props.customer,
+                is_virtual: false,
+            });
+        };
+
+        const onSetVirtual = () => {
+            emit("updateCustomer", "", props.customer.wallet, {
+                ...props.customer,
+                is_virtual: true,
+            });
+        };
+
         return {
             onStakingEnabled,
             onRestricted,
@@ -220,6 +265,8 @@ export default {
             onChangeAccountNote,
             onChangeAccountEthBalance,
             onChangeAccountUSDCBalance,
+            onSetReal,
+            onSetVirtual,
         };
     },
 };
