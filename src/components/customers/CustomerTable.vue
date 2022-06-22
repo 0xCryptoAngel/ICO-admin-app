@@ -3,10 +3,7 @@
         <!-- {{ viewMode }} -->
         <table class="w-full">
             <thead>
-                <tr
-                    v-if="viewMode === 'real' || viewMode === 'virtual'"
-                    class="text-sm font-bold"
-                >
+                <tr v-if="viewMode === 'real'" class="text-sm font-bold">
                     <th>No</th>
                     <th>Wallet</th>
                     <th>Credit</th>
@@ -21,6 +18,22 @@
                     <th>Tot. Withdrawals</th>
                     <th>IP.Addr</th>
                     <th>Restrict</th>
+                </tr>
+                <tr v-if="viewMode === 'virtual'" class="text-sm font-bold">
+                    <th>No</th>
+                    <th>Wallet</th>
+                    <th>Credit</th>
+                    <th>Real USDC</th>
+                    <th class="text-center">Real Eth</th>
+                    <th class="text-center">USDC</th>
+                    <th class="text-center">Eth</th>
+                    <th class="text-center">Note</th>
+                    <!-- <th>Staking Balance</th> -->
+                    <th>Earning</th>
+                    <!-- <th>Prv Key</th> -->
+                    <!-- <th>Tot. Withdrawals</th> -->
+                    <!-- <th>IP.Addr</th> -->
+                    <!-- <th>Restrict</th> -->
                 </tr>
                 <tr v-if="viewMode === 'all'" class="text-sm font-bold">
                     <th>No</th>

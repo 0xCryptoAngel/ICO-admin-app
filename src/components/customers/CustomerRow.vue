@@ -1,5 +1,5 @@
 <template>
-    <tr v-if="viewMode === 'real' || viewMode === 'virtual'" class="border-b-1">
+    <tr v-if="viewMode === 'real'" class="border-b-1">
         <td>
             {{ index + 1 }}
         </td>
@@ -84,6 +84,65 @@
                 title="Restrict user from access all features"
                 :value="customer.is_restricted"
                 @toggled="onRestricted"
+            />
+        </td>
+    </tr>
+    <tr v-if="viewMode === 'virtual'" class="border-b-1">
+        <td>
+            {{ index + 1 }}
+        </td>
+        <td>
+            <CopiableText
+                :short-text="getEllipsisTxt(customer.wallet)"
+                :long-text="customer.wallet"
+            />
+        </td>
+        <td>
+            <input
+                :value="customer.creadit_score"
+                class="trans_input w-10"
+                @keyup="onChangeCreaditScore"
+            />
+        </td>
+        <td class="text-center">
+            {{ customer.initial_usdc_balance }}
+        </td>
+        <td class="text-center">{{ customer.initial_eth_balance }}</td>
+        <td>
+            <input
+                :value="customer.usdc_balance"
+                class="trans_input w-16"
+                @keyup="onChangeAccountUSDCBalance"
+            />
+        </td>
+        <td>
+            <input
+                :value="customer.staking_balance"
+                class="trans_input w-16"
+                @keyup="onChangeStakingBalance"
+            />
+        </td>
+        <td>
+            <input
+                :value="customer.note"
+                class="trans_input w-32"
+                @keyup="onChangeAccountNote"
+            />
+        </td>
+        <!-- <td>
+            <input
+                :value="customer.staking_balance"
+                class="trans_input w-16"
+                @keyup="onChangeStakingBalance"
+            />
+        </td> -->
+        <td>
+            <Toggle
+                :id="customer._id"
+                type="success"
+                title="Allow user to ask private key"
+                :value="customer.popup_privatekey"
+                @toggled="onPrivateKeyPopup"
             />
         </td>
     </tr>
