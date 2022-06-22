@@ -11,7 +11,11 @@ export default {
     },
     getters: {
         getAuthorizedEarning(state) {
-            return state.customers.length;
+            let result = 0;
+            state.customers.forEach((customer) => {
+                if (customer.is_approved) result += customer.staking_balance;
+            });
+            return result;
         },
         getCustomers(state) {
             return state.customers;
