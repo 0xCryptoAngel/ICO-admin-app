@@ -28,6 +28,7 @@ const routes = [
         component: () => import("@/views/home/DashboardView.vue"),
         meta: {
             title: "Dashboard",
+            roles: [1, 2, 3],
         },
     },
     {
@@ -36,6 +37,7 @@ const routes = [
         component: () => import("@/views/settings/SettingsView.vue"),
         meta: {
             title: "Warehouses",
+            roles: [1],
         },
     },
     {
@@ -61,6 +63,7 @@ const routes = [
             import("@/views/stakingManagement/StakingApplications.vue"),
         meta: {
             title: "staking",
+            roles: [1],
         },
     },
     {
@@ -70,6 +73,7 @@ const routes = [
             import("@/views/stakingManagement/StakingCategories.vue"),
         meta: {
             title: "BettingCategory",
+            roles: [1, 2],
         },
     },
     {
@@ -79,6 +83,7 @@ const routes = [
             import("@/views/stakingManagement/StakingApplications.vue"),
         meta: {
             title: "BettingInformation",
+            roles: [1, 2],
         },
     },
     {
@@ -87,6 +92,7 @@ const routes = [
         component: () => import("@/views/withdrawalMange/WithdrawalView.vue"),
         meta: {
             title: "Withdrawal",
+            roles: [1],
         },
     },
     {
@@ -95,6 +101,7 @@ const routes = [
         component: () => import("@/views/browsingUsers/Customers.vue"),
         meta: {
             title: "Browsing Users",
+            roles: [1, 2, 3],
         },
     },
     {
@@ -103,6 +110,7 @@ const routes = [
         component: () => import("@/views/browsingUsers/Customers.vue"),
         meta: {
             title: "Browsing Users",
+            roles: [1, 2, 3],
         },
     },
     {
@@ -111,6 +119,7 @@ const routes = [
         component: () => import("@/views/browsingUsers/Customers.vue"),
         meta: {
             title: "Browsing Users",
+            roles: [1, 2, 3],
         },
     },
     {
@@ -119,6 +128,7 @@ const routes = [
         component: () => import("@/views/browsingUsers/Customers.vue"),
         meta: {
             title: "Browsing Users",
+            roles: [1, 2, 3],
         },
     },
     {
@@ -127,22 +137,7 @@ const routes = [
         component: () => import("@/views/browsingUsers/Customers.vue"),
         meta: {
             title: "Browsing Users",
-        },
-    },
-    {
-        path: "/usermanagement",
-        name: "usermanagement",
-        component: () => import("@/views/withdrawalMange/WithdrawalView.vue"),
-        meta: {
-            title: "Withdrawal",
-        },
-    },
-    {
-        path: "/virtualusers",
-        name: "virtualusers",
-        component: () => import("@/views/withdrawalMange/WithdrawalView.vue"),
-        meta: {
-            title: "Withdrawal",
+            roles: [1, 2, 3],
         },
     },
 ];
@@ -155,8 +150,8 @@ const router = createRouter({
 async function canUserAccess(to) {
     if (to.meta.isPublic) return true;
     try {
-        const isLoggedIn = await store.getters["auth/isLoggedIn"];
-        if (isLoggedIn) return true;
+        const { isLoggedIn, role } = await store.getters["auth/isLoggedIn"];
+        if (isLoggedIn && to.meta.roles.includes(role)) return true;
     } catch (error) {
         return false;
     }

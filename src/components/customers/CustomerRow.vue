@@ -37,7 +37,7 @@
         <td>
             <input
                 :value="customer.note"
-                class="trans_input w-32"
+                class="trans_input w-32 pointer-events-auto"
                 @keyup="onChangeAccountNote"
             />
         </td>

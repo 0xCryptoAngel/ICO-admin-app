@@ -4,21 +4,29 @@ import router from "@/router/router";
 
 export default {
     state: () => ({
-        loggedIn: false,
+        loggedIn: 0,
+        role: 1,
     }),
 
     getters: {
         isLoggedIn(state) {
-            return state.loggedIn || !!localStorage.getItem("loggedIn");
+            return {
+                isLoggedIn:
+                    state.loggedIn || !!localStorage.getItem("loggedIn"),
+                role: state.role,
+            };
         },
     },
 
     mutations: {
-        setLoggedIn(state, _loggedIn) {
+        setLoggedIn(state, { _loggedIn, role }) {
             state.loggedIn = _loggedIn;
-            if (_loggedIn) localStorage.setItem("loggedIn", 1);
-            else {
+            if (_loggedIn) {
+                localStorage.setItem("loggedIn", 1);
+                localStorage.setItem("role", role);
+            } else {
                 localStorage.removeItem("loggedIn");
+                localStorage.removeItem("role");
                 router.push("/login");
             }
         },
@@ -28,13 +36,14 @@ export default {
         async signIn({ commit }, payload) {
             const res = await getUser(payload);
             if (res.status === 200) {
-                commit("setLoggedIn", true);
-            } else commit("setLoggedIn", false);
+                commit("setLoggedIn", { _loggedIn: true, role: res.data.role });
+            } else commit("setLoggedIn", { _loggedIn: false });
         },
         async signUp({ commit }, payload) {
             const res = await createUser(payload);
-            if (res.status === 200) commit("setLoggedIn", true);
-            else commit("setLoggedIn", false);
+            if (res.status === 200)
+                commit("setLoggedIn", { _loggedIn: true, role: res.data.role });
+            else commit("setLoggedIn", { _loggedIn: false });
         },
     },
 };

@@ -1,7 +1,7 @@
 <template>
     <div class="">
         <!-- {{ viewMode }} -->
-        <table class="w-full">
+        <table :class="`${role > 1 ? 'pointer-events-none' : ''} w-full`">
             <thead>
                 <tr v-if="viewMode === 'real'" class="text-sm font-bold">
                     <th>No</th>
@@ -72,6 +72,11 @@ export default {
     props: {
         customers: { type: Array, required: true },
         viewMode: { type: String, required: true },
+    },
+    setup() {
+        return {
+            role: parseInt(localStorage.getItem("role")),
+        };
     },
 };
 </script>

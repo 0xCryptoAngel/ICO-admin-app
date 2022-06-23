@@ -1,9 +1,9 @@
 <template>
-  <!-- Sidebar -->
-  <nav class="w-60">
-    <app-icon />
-    <menu-section :section-data="menuItems.mainSection" />
-  </nav>
+    <!-- Sidebar -->
+    <nav class="w-60">
+        <app-icon />
+        <menu-section :section-data="menuItems.mainSection" />
+    </nav>
 </template>
 <script>
 import MenuSection from "./MenuSection.vue";
@@ -12,15 +12,14 @@ import menuItems from "@/data/menu.json";
 import { useRoute } from "vue-router";
 
 export default {
-  components: {
-    MenuSection,
-    appIcon,
-  },
-  setup() {
-    const route = useRoute();
-    return {
-      menuItems,
-    };
-  },
+    components: {
+        MenuSection,
+        appIcon,
+    },
+    setup() {
+        return {
+            menuItems,
+        };
+    },
 };
 </script>

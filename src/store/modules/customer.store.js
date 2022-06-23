@@ -46,12 +46,6 @@ export default {
                     const invitor = payload.find(
                         (item) => item._id == curInvitor
                     );
-                    console.log(
-                        i,
-                        curInvitor,
-                        customer.invitation_object,
-                        invitor
-                    );
                     if (invitor) {
                         customer.invitation_object[i - 1].number++;
                         customer.invitation_object[i - 1].list.push(

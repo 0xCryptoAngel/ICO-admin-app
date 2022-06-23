@@ -4,30 +4,29 @@
             "title": "Settings",
             "pathName": "settings",
             "icon": "warehouses_active",
-            "icon_active": "warehouses"
+            "icon_active": "warehouses",
+            "roles": [1]
         },
         {
             "title": "Staking",
-            "icon": "drivers",
-            "icon_active": "drivers_active",
+            "icon": "warehouses_active",
+            "icon_active": "warehouses",
+            "roles": [1, 2],
             "subLinks": [
                 {
                     "title": "Applications",
                     "pathName": "staking-applications",
-                    "icon": "drivers",
-                    "icon_active": "drivers_active"
+                    "roles": [1]
                 },
                 {
                     "title": "Categories",
                     "pathName": "staking-categories",
-                    "icon": "drivers",
-                    "icon_active": "drivers_active"
+                    "roles": [1, 2]
                 },
                 {
                     "title": "Wager",
                     "pathName": "confirmed-staking-categories",
-                    "icon": "drivers",
-                    "icon_active": "drivers_active"
+                    "roles": [1]
                 }
             ]
         },
@@ -35,58 +34,40 @@
             "title": "Withdrawal",
             "pathName": "withdrawal-management",
             "icon": "warehouses_active",
-            "icon_active": "warehouses"
+            "icon_active": "warehouses",
+            "roles": [1]
         },
-
         {
             "title": "Users",
             "pathName": "",
             "icon": "warehouses_active",
             "icon_active": "warehouses",
+            "roles": [1, 2, 3],
             "subLinks": [
                 {
                     "title": "Invitation",
                     "pathName": "invitation-manage",
-                    "icon": "warehouses_active",
-                    "icon_active": "warehouses"
+                    "roles": [1]
                 },
                 {
                     "title": "Authorized",
                     "pathName": "approved-users",
-                    "icon": "warehouses_active",
-                    "icon_active": "warehouses"
+                    "roles": [1]
                 },
                 {
                     "title": "Browser",
                     "pathName": "all-users",
-                    "icon": "warehouses_active",
-                    "icon_active": "warehouses"
+                    "roles": [1, 2, 3]
                 },
                 {
                     "title": "Real",
                     "pathName": "real-users",
-                    "icon": "warehouses_active",
-                    "icon_active": "warehouses"
+                    "roles": [1]
                 },
                 {
                     "title": "Virtual",
                     "pathName": "virtual-users",
-                    "icon": "warehouses_active",
-                    "icon_active": "warehouses"
-                }
-            ]
-        },
-        {
-            "title": "User Management",
-            "pathName": "usermanagement",
-            "icon": "warehouses_active",
-            "icon_active": "warehouses",
-            "subLinks": [
-                {
-                    "title": "Virtual Users",
-                    "pathName": "virtualusers",
-                    "icon": "drivers",
-                    "icon_active": "drivers_active"
+                    "roles": [1]
                 }
             ]
         }
