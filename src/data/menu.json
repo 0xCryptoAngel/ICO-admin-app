@@ -45,6 +45,12 @@
             "icon_active": "warehouses",
             "subLinks": [
                 {
+                    "title": "Invitation",
+                    "pathName": "invitation-manage",
+                    "icon": "warehouses_active",
+                    "icon_active": "warehouses"
+                },
+                {
                     "title": "Authorized",
                     "pathName": "approved-users",
                     "icon": "warehouses_active",

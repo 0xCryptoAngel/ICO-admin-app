@@ -114,7 +114,15 @@ const routes = [
         },
     },
     {
-        path: "/users/?virtual=1",
+        path: "/users/?invitation",
+        name: "invitation-manage",
+        component: () => import("@/views/browsingUsers/Customers.vue"),
+        meta: {
+            title: "Browsing Users",
+        },
+    },
+    {
+        path: "/users/?approved=1",
         name: "approved-users",
         component: () => import("@/views/browsingUsers/Customers.vue"),
         meta: {

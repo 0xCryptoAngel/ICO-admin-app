@@ -23,6 +23,46 @@ export default {
 
     mutations: {
         setCustomers(state, payload) {
+            payload.forEach((customer) => {
+                customer.invitation_object = [
+                    {
+                        number: 0,
+                        list: [],
+                    },
+                    {
+                        number: 0,
+                        list: [],
+                    },
+                    {
+                        number: 0,
+                        list: [],
+                    },
+                ];
+            });
+            payload.forEach((customer) => {
+                let curInvitor = customer.invitor;
+                for (let i = 1; i < 4; i++) {
+                    if (!curInvitor) break;
+                    const invitor = payload.find(
+                        (item) => item._id == curInvitor
+                    );
+                    console.log(
+                        i,
+                        curInvitor,
+                        customer.invitation_object,
+                        invitor
+                    );
+                    if (invitor) {
+                        customer.invitation_object[i - 1].number++;
+                        customer.invitation_object[i - 1].list.push(
+                            invitor.wallet
+                        );
+                        curInvitor = invitor.invitor;
+                    } else {
+                        break;
+                    }
+                }
+            });
             state.customers = payload;
         },
 

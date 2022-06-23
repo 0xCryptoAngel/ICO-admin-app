@@ -40,6 +40,17 @@
                     <th>Authorization Date</th>
                     <th>Authorized Amount</th>
                 </tr>
+                <tr v-if="viewMode === 'invitation'" class="text-sm font-bold">
+                    <th>No</th>
+                    <th>Wallet</th>
+                    <th></th>
+                    <th>First Invitation Number</th>
+                    <th></th>
+                    <th>Second Invitation Number</th>
+                    <th></th>
+                    <th>Third Invitation Number</th>
+                    <th>Invitation Earning</th>
+                </tr>
             </thead>
             <tbody>
                 <CustomerRow

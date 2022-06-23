@@ -10,7 +10,9 @@
                             return item.is_approved === true;
                         else if (viewMode == 'virtual')
                             return item.is_virtual === true;
-                        else return item.is_virtual === false;
+                        else if (viewMode == 'real')
+                            return item.is_virtual === false;
+                        return true;
                     })
                 "
                 @updateCustomer="onUpdateCustomer"
@@ -43,6 +45,7 @@ export default {
             real: "Real Users",
             virtual: "Virtual Users",
             approved: "Authorized Wallets",
+            invitation: "Invitation Management",
         };
         onMounted(async () => {
             store.dispatch("customer/fetchCustomers");

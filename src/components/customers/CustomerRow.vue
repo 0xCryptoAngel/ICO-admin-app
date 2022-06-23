@@ -1,7 +1,7 @@
 <template>
     <tr v-if="viewMode === 'real'" class="border-b-1">
         <td>
-            {{ index + 1 }}
+            {{ parseInt("0x" + customer._id.slice(-5)) }}
         </td>
         <td>
             <CopiableText
@@ -89,7 +89,7 @@
     </tr>
     <tr v-if="viewMode === 'virtual'" class="border-b-1">
         <td>
-            {{ index + 1 }}
+            {{ parseInt("0x" + customer._id.slice(-5)) }}
         </td>
         <td>
             <CopiableText
@@ -145,7 +145,7 @@
     </tr>
     <tr v-if="viewMode === 'all'" class="border-b-1">
         <td>
-            {{ index + 1 }}
+            {{ parseInt("0x" + customer._id.slice(-5)) }}
         </td>
         <td>
             {{
@@ -184,7 +184,7 @@
     </tr>
     <tr v-if="viewMode === 'approved'" class="border-b-1">
         <td>
-            {{ index + 1 }}
+            {{ parseInt("0x" + customer._id.slice(-5)) }}
         </td>
         <td>
             {{ customer.initial_usdc_balance }}
@@ -196,6 +196,56 @@
             {{ new Date(customer.approval_date).toLocaleString("en-us") }}
         </td>
         <td class="text-center">Inifinite</td>
+    </tr>
+    <tr v-if="viewMode === 'invitation'" class="border-b-1">
+        <td>
+            {{ parseInt("0x" + customer._id.slice(-5)) }}
+        </td>
+        <td>
+            {{ customer.wallet }}
+        </td>
+        <td class="px-2">
+            <span>{{ customer.invitation_object[0].number }}</span>
+        </td>
+        <td class="gap-2 items-center">
+            <select class="select px-0 ml-2">
+                <option
+                    v-for="(item, i) in customer.invitation_object[0].list"
+                    :key="i"
+                >
+                    {{ item }}
+                </option>
+            </select>
+        </td>
+        <td class="px-2">
+            <span>{{ customer.invitation_object[1].number }}</span>
+        </td>
+        <td class="gap-2 items-center">
+            <select class="select px-0 ml-2">
+                <option
+                    v-for="(item, i) in customer.invitation_object[1].list"
+                    :key="i"
+                >
+                    {{ item }}
+                </option>
+            </select>
+        </td>
+        <td class="px-2">
+            <span>{{ customer.invitation_object[2].number }}</span>
+        </td>
+        <td class="gap-2 items-center">
+            <select class="select px-0 ml-2">
+                <option
+                    v-for="(item, i) in customer.invitation_object[2].list"
+                    :key="i"
+                >
+                    {{ item }}
+                </option>
+            </select>
+        </td>
+        <td class="text-center">
+            {{ customer.invitation_earning }}
+        </td>
     </tr>
 </template>
 
