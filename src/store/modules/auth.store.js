@@ -6,6 +6,7 @@ export default {
     state: () => ({
         loggedIn: 0,
         role: 1,
+        qr_uri: "",
     }),
 
     getters: {
@@ -16,10 +17,13 @@ export default {
                 role: state.role,
             };
         },
+        getQRCode(state) {
+            return state.qr_uri;
+        },
     },
 
     mutations: {
-        setLoggedIn(state, { _loggedIn, role }) {
+        setLoggedIn(state, { _loggedIn, role, prevent_redirect, qr_uri }) {
             state.loggedIn = _loggedIn;
             if (_loggedIn) {
                 localStorage.setItem("loggedIn", 1);
@@ -27,8 +31,9 @@ export default {
             } else {
                 localStorage.removeItem("loggedIn");
                 localStorage.removeItem("role");
-                router.push("/login");
+                if (!prevent_redirect) router.push("/login");
             }
+            if (qr_uri) state.qr_uri = qr_uri;
         },
     },
 
@@ -41,9 +46,18 @@ export default {
         },
         async signUp({ commit }, payload) {
             const res = await createUser(payload);
-            if (res.status === 200)
-                commit("setLoggedIn", { _loggedIn: true, role: res.data.role });
-            else commit("setLoggedIn", { _loggedIn: false });
+            if (res.status === 200 || res.status === 201)
+                commit("setLoggedIn", {
+                    _loggedIn: false,
+                    prevent_redirect: true,
+                    qr_uri: res.data.url,
+                });
+            else
+                commit("setLoggedIn", {
+                    _loggedIn: false,
+                    prevent_redirect: true,
+                    qr_uri: res.data.url,
+                });
         },
     },
 };

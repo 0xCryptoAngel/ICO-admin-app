@@ -62,7 +62,7 @@
                 {
                     "title": "Real",
                     "pathName": "real-users",
-                    "roles": [1]
+                    "roles": [1, 3]
                 },
                 {
                     "title": "Virtual",
