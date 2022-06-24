@@ -131,7 +131,6 @@ export default {
         const store = useStore();
 
         onMounted(async () => {
-            store.dispatch("dashboard/fetchDashboardData");
             store.dispatch("customer/fetchCustomers");
         });
 

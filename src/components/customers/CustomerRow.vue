@@ -337,7 +337,7 @@ export default {
         const onChangeStakingBalance = (e) => {
             if (
                 e.keyCode === 13 &&
-                props.customer.account_balance != e.target.value
+                props.customer.staking_balance != e.target.value
             ) {
                 emit("updateCustomer", "", props.customer.wallet, {
                     ...props.customer,

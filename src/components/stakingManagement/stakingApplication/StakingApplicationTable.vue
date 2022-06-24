@@ -3,6 +3,7 @@
         <table class="w-full">
             <thead>
                 <tr class="text-sm font-bold">
+                    <th>No</th>
                     <th>Staking Time</th>
                     <th>Ending Time</th>
                     <th>Address</th>

@@ -1,6 +1,13 @@
 {
     "mainSection": [
         {
+            "title": "Administrators",
+            "pathName": "administrators",
+            "icon": "warehouses_active",
+            "icon_active": "warehouses",
+            "roles": [1]
+        },
+        {
             "title": "Settings",
             "pathName": "settings",
             "icon": "warehouses_active",

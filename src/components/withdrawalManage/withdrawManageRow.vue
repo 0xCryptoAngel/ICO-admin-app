@@ -1,5 +1,6 @@
 <template>
     <tr class="border-b-1">
+        <td>{{ parseInt("0x" + withdrawal._id.slice(-5)) }}</td>
         <td class="py-3">
             {{ new Date(withdrawal.created_at).toLocaleString("en-us") }}
         </td>
@@ -15,13 +16,13 @@
         <td>
             <button
                 class="button mr-2"
-                :disabled="withdrawal.is_confirmed"
+                :disabled="withdrawal.is_checked && withdrawal.is_confirmed"
                 @click="onConfirm(true)"
             >
                 Pass
             </button>
             <button
-                :disabled="!withdrawal.is_confirmed"
+                :disabled="withdrawal.is_checked && !withdrawal.is_confirmed"
                 class="button delete_button"
                 @click="onConfirm(false)"
             >

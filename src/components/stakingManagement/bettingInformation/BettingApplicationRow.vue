@@ -1,32 +1,32 @@
 <template>
-  <tr class="border-b-1">
-    <td class="py-3">
-      <input type="checkbox" name="" id="" />
-    </td>
-    <td>
-      {{ link.betTime }}
-    </td>
-    <td>
-      {{ link.betEndTime }}
-    </td>
-    <td>
-      {{ link.walletAddress }}
-    </td>
-    <td>
-      {{ link.betAmount }}
-    </td>
-    <td>
-      {{ link.betRevenueCategory }}
-    </td>
-  </tr>
+    <tr class="border-b-1">
+        <td class="py-3">
+            <input type="checkbox" name="" id="" />
+        </td>
+        <td>
+            {{ link.betTime }}
+        </td>
+        <td>
+            {{ link.betEndTime }}
+        </td>
+        <td>
+            {{ link.walletAddress }}
+        </td>
+        <td>
+            {{ link.betAmount }}
+        </td>
+        <td>
+            {{ link.betRevenueCategory }}
+        </td>
+    </tr>
 </template>
 
 <script>
 import DpLinkButton from "@/components/buttons/DpLinkButton.vue";
 export default {
-  components: {
-    DpLinkButton,
-  },
-  props: { link: { type: Object, required: true } },
+    components: {
+        DpLinkButton,
+    },
+    props: { link: { type: Object, required: true } },
 };
 </script>

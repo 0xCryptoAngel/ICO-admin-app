@@ -3,6 +3,7 @@
         <table class="w-full">
             <thead class="bg-gray-75 text-left uppercase w-full rounded-lg">
                 <tr class="text-sm font-bold">
+                    <th>No</th>
                     <th>Time</th>
                     <th>Amount</th>
                     <th>Wallet Address</th>
