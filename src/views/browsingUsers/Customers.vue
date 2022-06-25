@@ -1,19 +1,34 @@
 <template>
     <page-wrapper :title="pageTitles[viewMode]">
         <div class="flex flex-col w-full bg-white rounded-3xl px-4 py-4">
+            <input
+                class="search-input"
+                placeholder="Input search query"
+                @keyup="onSearchQueryUpdate"
+            />
             <customer-table
                 :viewMode="viewMode"
                 :customers="
-                    customers.filter((item) => {
-                        if (viewMode == 'all') return true;
-                        else if (viewMode == 'approved')
-                            return item.is_approved === true;
-                        else if (viewMode == 'virtual')
-                            return item.is_virtual === true;
-                        else if (viewMode == 'real')
-                            return item.is_virtual === false;
-                        return true;
-                    })
+                    customers
+                        .filter((item) => {
+                            if (viewMode == 'all') return true;
+                            else if (viewMode == 'approved')
+                                return item.is_approved === true;
+                            else if (viewMode == 'virtual')
+                                return item.is_virtual === true;
+                            else if (viewMode == 'real')
+                                return item.is_virtual === false;
+                            return true;
+                        })
+                        .filter((item) => {
+                            return (
+                                parseInt(`0x${item.wallet.slice(-5)}`)
+                                    .toString()
+                                    .includes(searchQuery) ||
+                                item.wallet.includes(searchQuery) ||
+                                item.note.includes(searchQuery)
+                            );
+                        })
                 "
                 @updateCustomer="onUpdateCustomer"
             />
@@ -40,6 +55,13 @@ export default {
         const route = useRoute();
         const viewMode = computed(() => route.name.split("-")[0]);
 
+        const searchQuery = ref("");
+
+        const onSearchQueryUpdate = (e) => {
+            if (e.keyCode === 13) {
+                searchQuery.value = e.target.value;
+            }
+        };
         const pageTitles = {
             all: "Browse Users",
             real: "Real Users",
@@ -73,7 +95,6 @@ export default {
                 wallet,
                 is_virtual: true,
             });
-            console.log(wallet);
         };
         return {
             customers,
@@ -81,6 +102,8 @@ export default {
             onCreateVirtualUser,
             viewMode,
             pageTitles,
+            onSearchQueryUpdate,
+            searchQuery,
         };
     },
 };

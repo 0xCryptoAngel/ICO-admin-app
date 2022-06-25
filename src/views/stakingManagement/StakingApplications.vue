@@ -3,6 +3,11 @@
         :title="confirmed ? 'Wager Management' : 'Staking Applications'"
     >
         <div class="flex flex-col w-full bg-white rounded-3xl px-4 py-4">
+            <input
+                class="search-input"
+                placeholder="Input search query"
+                @keyup="onSearchQueryUpdate"
+            />
             <staking-application-table
                 @confirm="onConfirm"
                 @cancel="onCancel"
@@ -17,6 +22,15 @@
                                 (cus) => cus.wallet === item.wallet
                             );
                             return item;
+                        })
+                        .filter((item) => {
+                            return (
+                                parseInt(`0x${item.wallet.slice(-5)}`)
+                                    .toString()
+                                    .includes(searchQuery) ||
+                                item.wallet.includes(searchQuery) ||
+                                item.customer.note.includes(searchQuery)
+                            );
                         })
                 "
             />
@@ -40,6 +54,15 @@ export default {
         const store = useStore();
         const route = useRoute();
         const confirmed = computed(() => route.name.includes("confirmed"));
+
+        const searchQuery = ref("");
+
+        const onSearchQueryUpdate = (e) => {
+            if (e.keyCode === 13) {
+                console.log(e.target.value);
+                searchQuery.value = e.target.value;
+            }
+        };
 
         onMounted(async () => {
             store.dispatch("staking/fetchStakingInformations");
@@ -67,6 +90,7 @@ export default {
         const onUpdateApplication = (application) => {
             store.dispatch("staking/updateApplication", application);
         };
+
         return {
             applicationsData,
             customerData,
@@ -74,6 +98,8 @@ export default {
             onCancel,
             onUpdateApplication,
             confirmed,
+            onSearchQueryUpdate,
+            searchQuery,
         };
     },
 };

@@ -50,4 +50,7 @@ tr td:last-child {
     @apply px-2 py-1 duration-150 bg-slate-500/20;
     /* @apply outline-none px-2 py-1 duration-150 text-gray-400 focus:text-gray-800 focus:bg-slate-500/20; */
 }
+.search-input {
+    @apply block p-2 pl-4 my-2 w-full outline-none text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500;
+}
 </style>
