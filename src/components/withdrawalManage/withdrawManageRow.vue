@@ -22,14 +22,14 @@
                 :disabled="withdrawal.is_checked && withdrawal.is_confirmed"
                 @click="onConfirm(true)"
             >
-                Pass
+                {{ t("Pass") }}
             </button>
             <button
                 :disabled="withdrawal.is_checked && !withdrawal.is_confirmed"
                 class="button delete_button"
                 @click="onConfirm(false)"
             >
-                No Pass
+                {{ t("No Pass") }}
             </button>
         </td>
     </tr>
@@ -38,6 +38,7 @@
 <script>
 import { getEllipsisTxt } from "@/utils/formatter";
 import CopiableText from "@/components/buttons/CopiableText.vue";
+import { useI18n } from "vue-i18n";
 export default {
     components: { CopiableText },
     props: {
@@ -46,10 +47,13 @@ export default {
     },
     emits: ["confirm"],
     setup(props, { emit }) {
+        const { locale, t } = useI18n({
+            inheritLocale: true,
+        });
         const onConfirm = (is_confirmed) => {
             emit("confirm", { withdrawal: props.withdrawal, is_confirmed });
         };
-        return { onConfirm, getEllipsisTxt };
+        return { onConfirm, getEllipsisTxt, locale, t };
     },
 };
 </script>

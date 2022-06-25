@@ -3,11 +3,7 @@
         :title="confirmed ? 'Wager Management' : 'Staking Applications'"
     >
         <div class="flex flex-col w-full bg-white rounded-3xl px-4 py-4">
-            <input
-                class="search-input"
-                placeholder="Input search query"
-                @keyup="onSearchQueryUpdate"
-            />
+            <input class="search-input" @keyup="onSearchQueryUpdate" />
             <staking-application-table
                 @confirm="onConfirm"
                 @cancel="onCancel"

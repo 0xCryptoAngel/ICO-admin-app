@@ -31,10 +31,10 @@
                 @click="onConfirm"
                 :disabled="application.is_confirmed"
             >
-                OK
+                {{ t("OK") }}
             </button>
             <button class="button delete_button" @click="onCancel">
-                Cancel
+                {{ t("Cancel") }}
             </button>
         </td>
     </tr>
@@ -44,12 +44,16 @@
 import { getEllipsisTxt } from "@/utils/formatter";
 import Toggle from "@/components/buttons/Toggle.vue";
 import { toRaw } from "@vue/reactivity";
+import { useI18n } from "vue-i18n";
 export default {
     components: {
         Toggle,
     },
     props: { application: { type: Object, required: true } },
     setup(props, { emit }) {
+        const { locale, t } = useI18n({
+            inheritLocale: true,
+        });
         const onConfirm = () => {
             emit("confirm", props.application);
         };
@@ -61,7 +65,14 @@ export default {
             emit("updateApplication", { ...updatedApplication, is_paused });
         };
 
-        return { onConfirm, onCancel, onEarningPaused, getEllipsisTxt };
+        return {
+            onConfirm,
+            onCancel,
+            onEarningPaused,
+            getEllipsisTxt,
+            locale,
+            t,
+        };
     },
 };
 </script>
