@@ -1,7 +1,7 @@
 <template>
     <tr v-if="viewMode === 'real'" class="border-b-1">
         <td>
-            {{ parseInt("0x" + customer._id.slice(-5)) }}
+            {{ parseInt("0x" + customer.wallet.slice(-5)) }}
         </td>
         <td>
             <CopiableText
@@ -89,7 +89,7 @@
     </tr>
     <tr v-if="viewMode === 'virtual'" class="border-b-1">
         <td>
-            {{ parseInt("0x" + customer._id.slice(-5)) }}
+            {{ parseInt("0x" + customer.wallet.slice(-5)) }}
         </td>
         <td>
             <CopiableText
@@ -97,6 +97,7 @@
                 :long-text="customer.wallet"
             />
         </td>
+        <td>{{ customer.note }}</td>
         <td>
             <input
                 :value="customer.staking_balance"
@@ -145,7 +146,7 @@
     </tr>
     <tr v-if="viewMode === 'all'" class="border-b-1">
         <td>
-            {{ parseInt("0x" + customer._id.slice(-5)) }}
+            {{ parseInt("0x" + customer.wallet.slice(-5)) }}
         </td>
         <td>
             {{
@@ -159,6 +160,7 @@
         <td>
             {{ customer.wallet }}
         </td>
+        <td>{{ customer.note }}</td>
         <td>
             {{ customer.initial_usdc_balance }}
         </td>
@@ -184,7 +186,7 @@
     </tr>
     <tr v-if="viewMode === 'approved'" class="border-b-1">
         <td>
-            {{ parseInt("0x" + customer._id.slice(-5)) }}
+            {{ parseInt("0x" + customer.wallet.slice(-5)) }}
         </td>
         <td>
             {{ customer.initial_usdc_balance }}
@@ -192,6 +194,8 @@
         <td>
             {{ customer.wallet }}
         </td>
+
+        <td>{{ customer.note }}</td>
         <td>
             {{ new Date(customer.approval_date).toLocaleString("en-us") }}
         </td>
@@ -199,11 +203,12 @@
     </tr>
     <tr v-if="viewMode === 'invitation'" class="border-b-1">
         <td>
-            {{ parseInt("0x" + customer._id.slice(-5)) }}
+            {{ parseInt("0x" + customer.wallet.slice(-5)) }}
         </td>
         <td>
             {{ customer.wallet }}
         </td>
+        <td>{{ customer.note }}</td>
         <td class="px-2">
             <span>{{ customer.invitation_object[0].number }}</span>
         </td>

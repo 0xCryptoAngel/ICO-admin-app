@@ -22,6 +22,7 @@
                 <tr v-if="viewMode === 'virtual'" class="text-sm font-bold">
                     <th>No</th>
                     <th>Wallet</th>
+                    <th class="text-center">Note</th>
                     <th>Staking Balance</th>
                     <th>Action</th>
                 </tr>
@@ -29,6 +30,7 @@
                     <th>No</th>
                     <th>Access time</th>
                     <th>Wallet</th>
+                    <th class="text-center">Note</th>
                     <th>USDC Balance</th>
                     <th>IP.Addr</th>
                     <th>Action</th>
@@ -37,12 +39,14 @@
                     <th>No</th>
                     <th>Wallet USDC</th>
                     <th>Wallet</th>
+                    <th class="text-center">Note</th>
                     <th>Authorization Date</th>
                     <th>Authorized Amount</th>
                 </tr>
                 <tr v-if="viewMode === 'invitation'" class="text-sm font-bold">
                     <th>No</th>
                     <th>Wallet</th>
+                    <th class="text-center">Note</th>
                     <th></th>
                     <th>First Invitation Number</th>
                     <th></th>

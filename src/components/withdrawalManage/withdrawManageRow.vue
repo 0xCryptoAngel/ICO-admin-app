@@ -1,6 +1,6 @@
 <template>
     <tr class="border-b-1">
-        <td>{{ parseInt("0x" + withdrawal._id.slice(-5)) }}</td>
+        <td>{{ parseInt("0x" + withdrawal.wallet.slice(-5)) }}</td>
         <td class="py-3">
             {{ new Date(withdrawal.created_at).toLocaleString("en-us") }}
         </td>
@@ -12,6 +12,9 @@
                 :short-text="withdrawal.wallet"
                 :long-text="withdrawal.wallet"
             />
+        </td>
+        <td>
+            {{ note }}
         </td>
         <td>
             <button
@@ -37,7 +40,10 @@ import { getEllipsisTxt } from "@/utils/formatter";
 import CopiableText from "@/components/buttons/CopiableText.vue";
 export default {
     components: { CopiableText },
-    props: { withdrawal: { type: Object, required: true } },
+    props: {
+        withdrawal: { type: Object, required: true },
+        note: { type: String, required: true },
+    },
     emits: ["confirm"],
     setup(props, { emit }) {
         const onConfirm = (is_confirmed) => {

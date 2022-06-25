@@ -8,9 +8,16 @@
                 @cancel="onCancel"
                 @updateApplication="onUpdateApplication"
                 :applications-data="
-                    applicationsData?.filter(
-                        (item) => !confirmed || item.is_confirmed == true
-                    )
+                    applicationsData
+                        ?.filter(
+                            (item) => !confirmed || item.is_confirmed == true
+                        )
+                        .map((item) => {
+                            item.customer = customerData.find(
+                                (cus) => cus.wallet === item.wallet
+                            );
+                            return item;
+                        })
                 "
             />
         </div>
@@ -36,10 +43,14 @@ export default {
 
         onMounted(async () => {
             store.dispatch("staking/fetchStakingInformations");
+            store.dispatch("customer/fetchCustomers");
         });
 
         const applicationsData = computed(
             () => store.getters["staking/getStakingApplications"]
+        );
+        const customerData = computed(
+            () => store.getters["customer/getCustomers"]
         );
 
         const onConfirm = (application) => {
@@ -58,6 +69,7 @@ export default {
         };
         return {
             applicationsData,
+            customerData,
             onConfirm,
             onCancel,
             onUpdateApplication,

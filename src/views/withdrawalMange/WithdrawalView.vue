@@ -3,6 +3,7 @@
         <div class="flex flex-col w-full bg-white rounded-3xl px-4 py-4">
             <Withdraw-Manage-Table
                 :withdrawals="withdrawals"
+                :customerData="customerData"
                 @confirm="onConfirm"
             />
         </div>
@@ -23,10 +24,15 @@ export default {
         const store = useStore();
         onMounted(async () => {
             store.dispatch("withdrawal/fetchWithdrawalList");
+            store.dispatch("customer/fetchCustomers");
         });
 
         const withdrawals = computed(
             () => store.getters["withdrawal/getWithdrawalList"]
+        );
+
+        const customerData = computed(
+            () => store.getters["customer/getCustomers"]
         );
 
         const onConfirm = ({ withdrawal, is_confirmed }) => {
@@ -45,6 +51,7 @@ export default {
         };
         return {
             withdrawals,
+            customerData,
             onConfirm,
         };
     },

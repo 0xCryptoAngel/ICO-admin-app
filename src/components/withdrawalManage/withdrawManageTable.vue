@@ -7,6 +7,7 @@
                     <th>Time</th>
                     <th>Amount</th>
                     <th>Wallet Address</th>
+                    <th>Note</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -16,6 +17,11 @@
                     v-for="(withdrawal, index) in withdrawals"
                     :key="index"
                     :withdrawal="withdrawal"
+                    :note="
+                        customerData.find(
+                            (item) => item.wallet == withdrawal.wallet
+                        )?.note
+                    "
                 />
             </tbody>
         </table>
@@ -27,6 +33,7 @@ export default {
     components: { WithdrawalManageRow },
     props: {
         withdrawals: { type: Array, required: true },
+        customerData: { type: Array, required: true },
     },
 };
 </script>
