@@ -142,7 +142,7 @@
             </span>
             <input class="w-16 trans_input" v-model="stakingAmount" />
             <button class="button" @click="onMakeBetting">
-                {{ t("Make Betting") }}
+                {{ $t("Make Betting") }}
             </button>
         </td>
     </tr>
@@ -175,14 +175,14 @@
                 class="button"
                 @click="onSetReal"
             >
-                {{ t("Real") }}
+                {{ $t("Real") }}
             </button>
             <button
                 :disabled="customer.is_virtual"
                 class="button delete_button"
                 @click="onSetVirtual"
             >
-                {{ t("Virtual") }}
+                {{ $t("Virtual") }}
             </button>
         </td>
     </tr>
@@ -263,7 +263,7 @@ import CopiableText from "@/components/buttons/CopiableText.vue";
 import { ref } from "@vue/reactivity";
 import { computed } from "@vue/runtime-core";
 import { useStore } from "vuex";
-import { useI18n } from "vue-i18n";
+
 export default {
     components: { Toggle, CopiableText },
     props: {
@@ -273,9 +273,6 @@ export default {
     },
     emits: ["confirm", "updateCustomer"],
     setup(props, { emit }) {
-        const { locale, t } = useI18n({
-            inheritLocale: true,
-        });
         const currentOption = ref(0);
         const stakingAmount = ref(0);
 
@@ -440,8 +437,6 @@ export default {
             currentOption,
             currentDuration,
             stakingAmount,
-            locale,
-            t,
         };
     },
 };

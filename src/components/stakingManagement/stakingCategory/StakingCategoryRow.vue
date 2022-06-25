@@ -47,7 +47,7 @@
         <td>
             <!-- <button class="button edit_button" @click="onUpdateRewardRate">Update</button> -->
             <button class="button delete_button" @click="onDelete">
-                {{ t("Delete") }}
+                {{ $t("Delete") }}
             </button>
         </td>
     </tr>
@@ -57,7 +57,7 @@
 import { getEllipsisTxt } from "@/utils/formatter";
 import { ref, toRaw } from "@vue/reactivity";
 import { computed } from "@vue/runtime-core";
-import { useI18n } from "vue-i18n";
+
 export default {
     props: { category: { type: Object, required: true } },
     emits: ["editCategory", "deleteCategory"],
@@ -95,9 +95,6 @@ export default {
                 emit("updateCategory", updatedCategory);
             }
         };
-        const { locale, t } = useI18n({
-            inheritLocale: true,
-        });
 
         return {
             onUpdateRewardRate,
@@ -107,8 +104,6 @@ export default {
             getEllipsisTxt,
             onUpdateStartingAmount,
             onUpdateEndAmount,
-            locale,
-            t,
         };
     },
 };

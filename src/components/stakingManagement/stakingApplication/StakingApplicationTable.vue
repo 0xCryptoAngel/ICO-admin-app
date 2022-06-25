@@ -3,15 +3,15 @@
         <table class="w-full">
             <thead>
                 <tr class="text-sm font-bold">
-                    <th>{{ t("No") }}</th>
-                    <th>{{ t("Staking Time") }}</th>
-                    <th>{{ t("Ending Time") }}</th>
-                    <th>{{ t("Address") }}</th>
-                    <th>{{ t("Amount") }}</th>
-                    <th>{{ t("Note") }}</th>
-                    <th>{{ t("Category") }}</th>
-                    <th>{{ t("Pause") }}</th>
-                    <th>{{ t("Action") }}</th>
+                    <th>{{ $t("No") }}</th>
+                    <th>{{ $t("Staking Time") }}</th>
+                    <th>{{ $t("Ending Time") }}</th>
+                    <th>{{ $t("Address") }}</th>
+                    <th>{{ $t("Amount") }}</th>
+                    <th>{{ $t("Note") }}</th>
+                    <th>{{ $t("Category") }}</th>
+                    <th>{{ $t("Pause") }}</th>
+                    <th>{{ $t("Action") }}</th>
                 </tr>
             </thead>
             <tbody class="divide-y">
@@ -26,7 +26,6 @@
     </div>
 </template>
 <script>
-import { useI18n } from "vue-i18n";
 import StakingApplicationRow from "./StakingApplicationRow.vue";
 export default {
     components: { StakingApplicationRow },
@@ -34,13 +33,7 @@ export default {
         applicationsData: { type: Array, required: true },
     },
     setup() {
-        const { locale, t } = useI18n({
-            inheritLocale: true,
-        });
-        return {
-            locale,
-            t,
-        };
+        return {};
     },
 };
 </script>

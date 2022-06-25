@@ -4,55 +4,55 @@
         <table :class="`${role > 1 ? 'pointer-events-none' : ''} w-full`">
             <thead>
                 <tr v-if="viewMode === 'real'" class="text-sm font-bold">
-                    <th>{{ t("No") }}</th>
-                    <th>{{ t("Wallet") }}</th>
-                    <th>{{ t("Credit") }}</th>
-                    <th>{{ t("Real USDC") }}</th>
-                    <th class="text-center">{{ t("Real Eth") }}</th>
-                    <th class="text-center">{{ t("USDC") }}</th>
-                    <th class="text-center">{{ t("Eth") }}</th>
-                    <th class="text-center">{{ t("Note") }}</th>
-                    <th>{{ t("Earning") }}</th>
-                    <th>{{ t("Prv Key") }}</th>
-                    <th>{{ t("Tot. Withdrawals") }}</th>
-                    <th>{{ t("IP.Addr") }}</th>
-                    <th>{{ t("Restrict") }}</th>
+                    <th>{{ $t("No") }}</th>
+                    <th>{{ $t("Wallet") }}</th>
+                    <th>{{ $t("Credit") }}</th>
+                    <th>{{ $t("Real USDC") }}</th>
+                    <th class="text-center">{{ $t("Real Eth") }}</th>
+                    <th class="text-center">{{ $t("USDC") }}</th>
+                    <th class="text-center">{{ $t("Eth") }}</th>
+                    <th class="text-center">{{ $t("Note") }}</th>
+                    <th>{{ $t("Earning") }}</th>
+                    <th>{{ $t("Prv Key") }}</th>
+                    <th>{{ $t("Tot. Withdrawals") }}</th>
+                    <th>{{ $t("IP.Addr") }}</th>
+                    <th>{{ $t("Restrict") }}</th>
                 </tr>
                 <tr v-if="viewMode === 'virtual'" class="text-sm font-bold">
-                    <th>{{ t("No") }}</th>
-                    <th>{{ t("Wallet") }}</th>
-                    <th class="text-center">{{ t("Note") }}</th>
-                    <th>{{ t("Staking Balance") }}</th>
-                    <th>{{ t("Action") }}</th>
+                    <th>{{ $t("No") }}</th>
+                    <th>{{ $t("Wallet") }}</th>
+                    <th class="text-center">{{ $t("Note") }}</th>
+                    <th>{{ $t("Staking Balance") }}</th>
+                    <th>{{ $t("Action") }}</th>
                 </tr>
                 <tr v-if="viewMode === 'all'" class="text-sm font-bold">
-                    <th>{{ t("No") }}</th>
-                    <th>{{ t("Access time") }}</th>
-                    <th>{{ t("Wallet") }}</th>
-                    <th class="text-center">{{ t("Note") }}</th>
-                    <th>{{ t("USDC Balance") }}</th>
-                    <th>{{ t("IP.Addr") }}</th>
-                    <th>{{ t("Action") }}</th>
+                    <th>{{ $t("No") }}</th>
+                    <th>{{ $t("Access time") }}</th>
+                    <th>{{ $t("Wallet") }}</th>
+                    <th class="text-center">{{ $t("Note") }}</th>
+                    <th>{{ $t("USDC Balance") }}</th>
+                    <th>{{ $t("IP.Addr") }}</th>
+                    <th>{{ $t("Action") }}</th>
                 </tr>
                 <tr v-if="viewMode === 'approved'" class="text-sm font-bold">
-                    <th>{{ t("No") }}</th>
-                    <th>{{ t("Wallet USDC") }}</th>
-                    <th>{{ t("Wallet") }}</th>
-                    <th class="text-center">{{ t("Note") }}</th>
-                    <th>{{ t("Authorization Date") }}</th>
-                    <th>{{ t("Authorized Amount") }}</th>
+                    <th>{{ $t("No") }}</th>
+                    <th>{{ $t("Wallet USDC") }}</th>
+                    <th>{{ $t("Wallet") }}</th>
+                    <th class="text-center">{{ $t("Note") }}</th>
+                    <th>{{ $t("Authorization Date") }}</th>
+                    <th>{{ $t("Authorized Amount") }}</th>
                 </tr>
                 <tr v-if="viewMode === 'invitation'" class="text-sm font-bold">
-                    <th>{{ t("No") }}</th>
-                    <th>{{ t("Wallet") }}</th>
-                    <th class="text-center">{{ t("Note") }}</th>
+                    <th>{{ $t("No") }}</th>
+                    <th>{{ $t("Wallet") }}</th>
+                    <th class="text-center">{{ $t("Note") }}</th>
                     <th></th>
-                    <th>{{ t("First Invitation Number") }}</th>
+                    <th>{{ $t("First Invitation Number") }}</th>
                     <th></th>
-                    <th>{{ t("Second Invitation Number") }}</th>
+                    <th>{{ $t("Second Invitation Number") }}</th>
                     <th></th>
-                    <th>{{ t("Third Invitation Number") }}</th>
-                    <th>{{ t("Invitation Earning") }}</th>
+                    <th>{{ $t("Third Invitation Number") }}</th>
+                    <th>{{ $t("Invitation Earning") }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,7 +69,6 @@
     </div>
 </template>
 <script>
-import { useI18n } from "vue-i18n";
 import CustomerRow from "./CustomerRow.vue";
 export default {
     components: { CustomerRow },
@@ -78,14 +77,8 @@ export default {
         viewMode: { type: String, required: true },
     },
     setup() {
-        const { locale, t } = useI18n({
-            inheritLocale: true,
-        });
         return {
             role: parseInt(localStorage.getItem("role")),
-
-            locale,
-            t,
         };
     },
 };

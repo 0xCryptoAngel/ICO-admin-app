@@ -18,7 +18,7 @@
                     class="w-8 h-8"
                     :name="isActive ? item.icon_active : item.icon"
                 />
-                <p class="pl-5">{{ t(item.title) }}</p>
+                <p class="pl-5">{{ $t(item.title) }}</p>
             </div>
         </router-link>
         <div v-else>
@@ -28,7 +28,7 @@
                         class="w-8 h-8"
                         :name="onClicked ? item.icon_active : item.icon"
                     />
-                    <p class="pl-5">{{ t(item.title) }}</p>
+                    <p class="pl-5">{{ $t(item.title) }}</p>
                 </div>
             </div>
 
@@ -49,7 +49,7 @@
                     class="flex border-2"
                 />
                 <div class="flex py-2 items-center px-5">
-                    <p class="pl-5">{{ t(subItem.title) }}</p>
+                    <p class="pl-5">{{ $t(subItem.title) }}</p>
                 </div>
             </router-link>
         </div>
@@ -60,7 +60,7 @@
 import { useRoute } from "vue-router";
 import { computed } from "vue";
 import { ref } from "@vue/runtime-core";
-import { useI18n } from "vue-i18n";
+
 export default {
     props: {
         item: {
@@ -79,16 +79,11 @@ export default {
         //   onClicked.value = !onClicked.value;
         // };
 
-        const { locale, t } = useI18n({
-            inheritLocale: true,
-        });
         return {
             onClicked,
             role,
             filteredLinks,
             // onClick,
-            locale,
-            t,
         };
     },
 };

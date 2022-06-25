@@ -1,6 +1,6 @@
 <template>
     <div class="bg-gray-40">
-        <page-wrapper :title="t('System Settings')">
+        <page-wrapper :title="$t('System Settings')">
             <div>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="bg-white rounded-md p-4 flex items-center">
@@ -15,7 +15,7 @@
                                 id="contract_address"
                             />
                             <p class="text-slate-900 text-2xl">
-                                {{ t("Contract Address") }}
+                                {{ $t("Contract Address") }}
                             </p>
                         </div>
                     </div>
@@ -31,14 +31,14 @@
                                 id="usdc_vault"
                             />
                             <p class="text-slate-900 text-2xl">
-                                {{ t("USDC Vault") }}
+                                {{ $t("USDC Vault") }}
                             </p>
                         </div>
                     </div>
                 </div>
 
                 <button @click="onUpdate" class="button info_button">
-                    {{ t("Update Settings") }}
+                    {{ $t("Update Settings") }}
                 </button>
             </div>
         </page-wrapper>
@@ -63,7 +63,7 @@
                                 id="invitation_bonus_percentages_1"
                             />
                             <p class="text-slate-900 text-xl">
-                                {{ t("Lev.1 Bonus(%)") }}
+                                {{ $t("Lev.1 Bonus(%)") }}
                             </p>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                                 id="invitation_bonus_percentages_2"
                             />
                             <p class="text-slate-900 text-xl">
-                                {{ t("Lev.2 Bonus(%)") }}
+                                {{ $t("Lev.2 Bonus(%)") }}
                             </p>
                         </div>
                     </div>
@@ -101,14 +101,14 @@
                                 id="invitation_bonus_percentages_3"
                             />
                             <p class="text-slate-900 text-xl">
-                                {{ t("Lev.3 Bonus(%)") }}
+                                {{ $t("Lev.3 Bonus(%)") }}
                             </p>
                         </div>
                     </div>
                 </div>
 
                 <button @click="onUpdateInvitation" class="button info_button">
-                    {{ t("Update Invitation Bonus") }}
+                    {{ $t("Update Invitation Bonus") }}
                 </button>
             </div>
         </page-wrapper>
@@ -120,7 +120,6 @@ import PageWrapper from "@/components/PageWrapper.vue";
 import StakingApplicationTable from "../../components/stakingManagement/stakingApplication/StakingApplicationTable.vue";
 import { computed, onMounted, ref } from "@vue/runtime-core";
 import { useStore } from "vuex";
-import { useI18n } from "vue-i18n";
 
 export default {
     components: {
@@ -128,9 +127,6 @@ export default {
         StakingApplicationTable,
     },
     setup(props) {
-        const { locale, t } = useI18n({
-            inheritLocale: true,
-        });
         const store = useStore();
 
         onMounted(async () => {
@@ -164,8 +160,6 @@ export default {
         };
 
         return {
-            locale,
-            t,
             settingsData,
             onUpdate,
             onUpdateInvitation,

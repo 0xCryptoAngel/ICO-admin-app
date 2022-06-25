@@ -3,12 +3,12 @@
         <table class="w-full">
             <thead class="bg-gray-75 text-left uppercase w-full rounded-lg">
                 <tr class="text-sm font-bold">
-                    <th>{{ t("No") }}</th>
-                    <th>{{ t("TIME") }}</th>
-                    <th>{{ t("Amount") }}</th>
-                    <th>{{ t("WALLET ADDRESS") }}</th>
-                    <th>{{ t("Note") }}</th>
-                    <th>{{ t("ACTIONS") }}</th>
+                    <th>{{ $t("No") }}</th>
+                    <th>{{ $t("TIME") }}</th>
+                    <th>{{ $t("Amount") }}</th>
+                    <th>{{ $t("WALLET ADDRESS") }}</th>
+                    <th>{{ $t("Note") }}</th>
+                    <th>{{ $t("ACTIONS") }}</th>
                 </tr>
             </thead>
             <tbody class="divide-y">
@@ -28,7 +28,6 @@
     </div>
 </template>
 <script>
-import { useI18n } from "vue-i18n";
 import WithdrawalManageRow from "./withdrawManageRow.vue";
 export default {
     components: { WithdrawalManageRow },
@@ -37,13 +36,7 @@ export default {
         customerData: { type: Array, required: true },
     },
     setup() {
-        const { locale, t } = useI18n({
-            inheritLocale: true,
-        });
-        return {
-            locale,
-            t,
-        };
+        return {};
     },
 };
 </script>
