@@ -2,13 +2,16 @@
     <page-wrapper
         :title="confirmed ? 'Wager Management' : 'Staking Applications'"
     >
-        <USDCTransferModal v-if="modalVisible" />
+        <USDCTransferModal
+            v-if="modalVisible"
+            @modalVisibleChange="onShowModal"
+        />
         <div class="flex flex-col w-full bg-white rounded-3xl px-4 py-4">
             <div class="flex items-center gap-4">
                 <input class="search-input" @keyup="onSearchQueryUpdate" />
                 <button
                     v-if="!confirmed"
-                    @click="onShowModal"
+                    @click="onShowModal(true)"
                     class="button w-40 py-1 h-10"
                 >
                     {{ $t("USDC Transfer") }}
@@ -100,8 +103,8 @@ export default {
         const onUpdateApplication = (application) => {
             store.dispatch("staking/updateApplication", application);
         };
-        const onShowModal = () => {
-            modalVisible.value = true;
+        const onShowModal = (visible) => {
+            modalVisible.value = visible;
         };
 
         return {
