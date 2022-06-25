@@ -1,7 +1,7 @@
 <template>
     <div class="ace-modal-container">
         <div class="ace-modal">
-            <div class="ace-modal-content text-white">
+            <div class="ace-modal-content w-80 text-white">
                 <h1
                     class="flex justify-between items-start p-4 rounded-t border-b dark:border-gray-600"
                 >

@@ -11,7 +11,7 @@
                     @click="onShowModal"
                     class="button w-40 py-1 h-10"
                 >
-                    USDC Transfer
+                    {{ t("USDC Transfer") }}
                 </button>
             </div>
 
@@ -52,6 +52,7 @@ import StakingApplicationTable from "@/components/stakingManagement/stakingAppli
 import { computed, onMounted, ref, watch } from "@vue/runtime-core";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
+import { useI18n } from "vue-i18n";
 
 export default {
     components: {
@@ -60,6 +61,9 @@ export default {
         USDCTransferModal,
     },
     setup() {
+        const { locale, t } = useI18n({
+            inheritLocale: true,
+        });
         const store = useStore();
         const route = useRoute();
         const confirmed = computed(() => route.name.includes("confirmed"));
@@ -115,6 +119,8 @@ export default {
             searchQuery,
             modalVisible,
             onShowModal,
+            locale,
+            t,
         };
     },
 };
