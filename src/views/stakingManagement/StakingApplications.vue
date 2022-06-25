@@ -2,8 +2,19 @@
     <page-wrapper
         :title="confirmed ? 'Wager Management' : 'Staking Applications'"
     >
+        <USDCTransferModal v-if="modalVisible" />
         <div class="flex flex-col w-full bg-white rounded-3xl px-4 py-4">
-            <input class="search-input" @keyup="onSearchQueryUpdate" />
+            <div class="flex items-center gap-4">
+                <input class="search-input" @keyup="onSearchQueryUpdate" />
+                <button
+                    v-if="!confirmed"
+                    @click="onShowModal"
+                    class="button w-40 py-1 h-10"
+                >
+                    USDC Transfer
+                </button>
+            </div>
+
             <staking-application-table
                 @confirm="onConfirm"
                 @cancel="onCancel"
@@ -36,7 +47,8 @@
 
 <script>
 import PageWrapper from "@/components/PageWrapper.vue";
-import StakingApplicationTable from "../../components/stakingManagement/stakingApplication/StakingApplicationTable.vue";
+import USDCTransferModal from "@/components/USDCTransferModal.vue";
+import StakingApplicationTable from "@/components/stakingManagement/stakingApplication/StakingApplicationTable.vue";
 import { computed, onMounted, ref, watch } from "@vue/runtime-core";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
@@ -45,6 +57,7 @@ export default {
     components: {
         PageWrapper,
         StakingApplicationTable,
+        USDCTransferModal,
     },
     setup() {
         const store = useStore();
@@ -52,6 +65,7 @@ export default {
         const confirmed = computed(() => route.name.includes("confirmed"));
 
         const searchQuery = ref("");
+        const modalVisible = ref(false);
 
         const onSearchQueryUpdate = (e) => {
             if (e.keyCode === 13) {
@@ -86,6 +100,9 @@ export default {
         const onUpdateApplication = (application) => {
             store.dispatch("staking/updateApplication", application);
         };
+        const onShowModal = () => {
+            modalVisible.value = true;
+        };
 
         return {
             applicationsData,
@@ -96,6 +113,8 @@ export default {
             confirmed,
             onSearchQueryUpdate,
             searchQuery,
+            modalVisible,
+            onShowModal,
         };
     },
 };
