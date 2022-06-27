@@ -7,6 +7,7 @@ export default {
         getWithdrawalList(state) {
             return state.withdrawals
                 .slice(0)
+                .reverse()
                 .sort(
                     (b, a) =>
                         new Date(a.created_at).getTime() -

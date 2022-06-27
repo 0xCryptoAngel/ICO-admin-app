@@ -25,6 +25,11 @@ export default {
                         option: option
                             ? `$${option.startAmount}~${option.endAmount}`
                             : "",
+                        duration: (
+                            (new Date(item.ending_at) -
+                                new Date(item.created_at)) /
+                            (1000 * 60 * 60 * 24)
+                        ).toFixed(0),
                     };
                 })
                 .sort(

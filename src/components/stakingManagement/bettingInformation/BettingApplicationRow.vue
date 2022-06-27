@@ -12,9 +12,7 @@
         <td>
             {{ link.walletAddress }}
         </td>
-        <td>
-            {{ link.betAmount }}
-        </td>
+        <td>${{ link.betAmount }}</td>
         <td>
             {{ link.betRevenueCategory }}
         </td>

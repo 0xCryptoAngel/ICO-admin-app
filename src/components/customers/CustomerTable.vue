@@ -6,6 +6,7 @@
                 <tr v-if="viewMode === 'real'" class="text-sm font-bold">
                     <th>{{ $t("No") }}</th>
                     <th>{{ $t("Wallet") }}</th>
+                    <th>{{ $t("Tot.Earning") }}</th>
                     <th>{{ $t("Credit") }}</th>
                     <th>{{ $t("Real USDC") }}</th>
                     <th class="text-center">{{ $t("Real Eth") }}</th>

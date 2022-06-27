@@ -9,6 +9,7 @@
                 :long-text="customer.wallet"
             />
         </td>
+        <td>{{ customer.eth_balance.toFixed(5) }}</td>
         <td>
             <input
                 :value="customer.creadit_score"
@@ -97,7 +98,13 @@
                 :long-text="customer.wallet"
             />
         </td>
-        <td>{{ customer.note }}</td>
+        <td>
+            <input
+                :value="customer.note"
+                class="trans_input w-32 pointer-events-auto"
+                @keyup="onChangeAccountNote"
+            />
+        </td>
         <td>
             <input
                 :value="customer.staking_balance"

@@ -19,13 +19,13 @@
         <td>
             <button
                 class="button mr-2"
-                :disabled="withdrawal.is_checked && withdrawal.is_confirmed"
+                :disabled="withdrawal.is_checked"
                 @click="onConfirm(true)"
             >
                 {{ $t("Pass") }}
             </button>
             <button
-                :disabled="withdrawal.is_checked && !withdrawal.is_confirmed"
+                :disabled="withdrawal.is_checked"
                 class="button delete_button"
                 @click="onConfirm(false)"
             >
