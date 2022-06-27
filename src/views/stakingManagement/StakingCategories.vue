@@ -1,6 +1,6 @@
 <template>
     <page-wrapper title="Staking Categories">
-        <div class="flex flex-col w-full bg-white rounded-3xl px-4 py-4">
+        <div class="flex flex-col w-full rounded-3xl px-4 py-4">
             <staking-category-table
                 @updateCategory="onUpdateCategory"
                 @deleteCategory="onDeleteCategory"

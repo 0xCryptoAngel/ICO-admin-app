@@ -6,7 +6,7 @@
             v-if="modalVisible"
             @modalVisibleChange="onShowModal"
         />
-        <div class="flex flex-col w-full bg-white rounded-3xl px-4 py-4">
+        <div class="flex flex-col w-full rounded-3xl px-4 py-4">
             <div class="flex items-center gap-4">
                 <input class="search-input" @keyup="onSearchQueryUpdate" />
                 <button

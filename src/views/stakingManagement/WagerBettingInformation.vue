@@ -1,6 +1,6 @@
 <template>
     <page-wrapper title="Wager Mangement">
-        <div class="flex flex-col w-full bg-white rounded-3xl px-4 py-4">
+        <div class="flex flex-col w-full rounded-3xl px-4 py-4">
             <betting-information-table :wallets-data="walletsData" />
         </div>
     </page-wrapper>
