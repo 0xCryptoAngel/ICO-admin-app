@@ -5,6 +5,13 @@
         <td>{{ new Date(application.ending_at).toLocaleString("en-us") }}</td>
         <td>{{ getEllipsisTxt(application.wallet) }}</td>
         <td>{{ application.duration }} {{ $t("Days") }}</td>
+        <td>
+            <input
+                :value="application.reward_rate"
+                class="trans_input w-32 pointer-events-auto"
+                @keyup="onChangeRewardRate"
+            />
+        </td>
         <td>{{ application.amount }}</td>
         <td>{{ application.customer?.note }}</td>
         <td>{{ application.option }}</td>
@@ -54,11 +61,23 @@ export default {
             const updatedApplication = toRaw(props.application);
             emit("updateApplication", { ...updatedApplication, is_paused });
         };
+        const onChangeRewardRate = (e) => {
+            if (
+                e.keyCode === 13 &&
+                props.application.reward_rate != e.target.value
+            ) {
+                emit("updateApplication", {
+                    ...props.application,
+                    reward_rate: e.target.value,
+                });
+            }
+        };
 
         return {
             onConfirm,
             onCancel,
             onEarningPaused,
+            onChangeRewardRate,
             getEllipsisTxt,
         };
     },

@@ -8,6 +8,7 @@
                     <th>{{ $t("Ending Time") }}</th>
                     <th>{{ $t("Address") }}</th>
                     <th>{{ $t("Days") }}</th>
+                    <th>{{ $t("Yield") }}</th>
                     <th>{{ $t("Amount") }}</th>
                     <th>{{ $t("Note") }}</th>
                     <th>{{ $t("Category") }}</th>
