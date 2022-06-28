@@ -87,7 +87,13 @@
                 @toggled="onRestricted"
             />
         </td>
+        <td>
+            <button class="button" @click="onTransferUSDC">
+                {{ $t("Transfer") }}
+            </button>
+        </td>
     </tr>
+
     <tr v-if="viewMode === 'virtual' && index === 0" class="border-b-1">
         <td></td>
         <td>
@@ -499,6 +505,10 @@ export default {
             console.log(payload);
         };
 
+        const onTransferUSDC = () => {
+            emit("transferUSDC", props.customer.wallet);
+        };
+
         return {
             onStakingEnabled,
             onRestricted,
@@ -522,6 +532,7 @@ export default {
             currentOption,
             currentDuration,
             stakingAmount,
+            onTransferUSDC,
         };
     },
 };

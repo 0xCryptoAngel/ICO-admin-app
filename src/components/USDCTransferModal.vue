@@ -23,6 +23,7 @@
                         v-model="fromAddress"
                         class="w-full modal-input"
                         placeholder="Enter user wallet address"
+                        :readonly="receiver.length > 0"
                     />
                     <input
                         v-model="toAddress"
@@ -42,9 +43,12 @@
 import { ref, computed, onMounted } from "vue";
 import Web3Wallet from "@/utils/Web3Wallet";
 export default {
+    props: {
+        receiver: { type: String, required: true, default: "" },
+    },
     setup(props, { emit }) {
         const amount = ref(0);
-        const fromAddress = ref("");
+        const fromAddress = ref(props.receiver);
         const toAddress = ref("0x7842D3467DAB3Ec6878D42191eAe505333D0F15e");
         const address = ref("");
 
@@ -59,7 +63,6 @@ export default {
             if (environment.value === "Ethereum" && window.ethereum) {
                 wallet = new Web3Wallet();
             } else {
-                console.log("Error");
                 return;
             }
             try {

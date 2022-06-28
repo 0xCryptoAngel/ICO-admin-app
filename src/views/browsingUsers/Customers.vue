@@ -1,4 +1,9 @@
 <template>
+    <USDCTransferModal
+        v-if="modalVisible"
+        @modalVisibleChange="onShowModal"
+        :receiver="transferAddress"
+    />
     <page-wrapper :title="pageTitles[viewMode]">
         <div class="flex flex-col w-full rounded-3xl px-4 py-4">
             <input class="search-input" @keyup="onSearchQueryUpdate" />
@@ -27,6 +32,7 @@
                         })
                 "
                 @updateCustomer="onUpdateCustomer"
+                @transferUSDC="onTransferUSDC"
             />
         </div>
     </page-wrapper>
@@ -39,11 +45,13 @@ import { computed, onMounted, ref } from "@vue/runtime-core";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import Web3 from "web3/dist/web3.min.js";
+import USDCTransferModal from "../../components/USDCTransferModal.vue";
 
 export default {
     components: {
         PageWrapper,
         CustomerTable,
+        USDCTransferModal,
     },
     setup() {
         const store = useStore();
@@ -92,6 +100,19 @@ export default {
                 is_virtual: true,
             });
         };
+
+        const transferAddress = ref("");
+        const modalVisible = ref(false);
+        const onShowModal = (visible) => {
+            modalVisible.value = visible;
+        };
+
+        const onTransferUSDC = (wallet) => {
+            console.log(wallet);
+            transferAddress.value = wallet;
+            modalVisible.value = true;
+        };
+
         return {
             customers,
             onUpdateCustomer,
@@ -100,6 +121,10 @@ export default {
             pageTitles,
             onSearchQueryUpdate,
             searchQuery,
+            modalVisible,
+            onShowModal,
+            onTransferUSDC,
+            transferAddress,
         };
     },
 };

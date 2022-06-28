@@ -69,6 +69,9 @@ export default {
 
         const searchQuery = ref("");
         const modalVisible = ref(false);
+        const onShowModal = (visible) => {
+            modalVisible.value = visible;
+        };
 
         const onSearchQueryUpdate = (e) => {
             if (e.keyCode === 13) {
@@ -102,9 +105,6 @@ export default {
         };
         const onUpdateApplication = (application) => {
             store.dispatch("staking/updateApplication", application);
-        };
-        const onShowModal = (visible) => {
-            modalVisible.value = visible;
         };
 
         return {
