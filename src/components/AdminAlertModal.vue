@@ -1,4 +1,8 @@
 <template>
+    <audio src="https://media-upload.net/uploads/_TIM6bZFNUsc.mp3" ref="audio">
+        Your browser does not support the
+        <code>audio</code> element.
+    </audio>
     <div v-if="message.length > 0" class="ace-modal-container">
         <div class="ace-modal">
             <div
@@ -25,10 +29,12 @@
     </div>
 </template>
 <script>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, defineComponent } from "vue";
+import dingdang from "@/audio/dingdang.mp3";
 import { useStore } from "vuex";
-export default {
+export default defineComponent({
     setup(props, { emit }) {
+        const audio = ref();
         const store = useStore();
         const intervalId = ref(-1);
         const message = ref("");
@@ -52,6 +58,7 @@ export default {
             for (let alertType in alert) {
                 if (alert[alertType] > 0) {
                     message.value = messages[alertType];
+                    audio.value?.play();
                     clearInterval(intervalId.value);
                     return;
                 }
@@ -64,7 +71,8 @@ export default {
         return {
             message,
             onReload,
+            audio,
         };
     },
-};
+});
 </script>
