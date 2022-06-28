@@ -88,6 +88,58 @@
             />
         </td>
     </tr>
+    <tr v-if="viewMode === 'virtual' && index === 0" class="border-b-1">
+        <td></td>
+        <td>
+            <input
+                class="trans_input w-80"
+                :id="`custom_wallet_${index}`"
+                placeholder="input wallet address"
+            />
+        </td>
+        <td></td>
+        <td></td>
+        <td class="flex items-center gap-2">
+            <select class="select" v-model="currentOption">
+                <option
+                    v-for="(category, i) in categoriesData"
+                    :key="i"
+                    :value="i"
+                >
+                    {{ category.startAmount }} ~ {{ category.endAmount }}
+                </option>
+            </select>
+
+            <select class="select" v-model="currentDuration">
+                <option
+                    v-for="(reward, i) in categoriesData[currentOption]
+                        .starkingReward"
+                    :key="i"
+                    :value="i"
+                >
+                    {{ reward.minRewardRate }}% ~ {{ reward.maxRewardRate }}%
+                </option>
+            </select>
+            <span class="w-24">
+                {{
+                    categoriesData[currentOption].starkingReward[
+                        currentDuration
+                    ].duration
+                }}
+                days
+                {{
+                    categoriesData[currentOption].starkingReward[
+                        currentDuration
+                    ].reward_rate
+                }}
+                %
+            </span>
+            <input class="w-16 trans_input" v-model="stakingAmount" />
+            <button class="button" @click="onMakeCustomBetting">
+                {{ $t("Make Betting") }}
+            </button>
+        </td>
+    </tr>
     <tr v-if="viewMode === 'virtual'" class="border-b-1">
         <td>
             {{ parseInt("0x" + customer.wallet.slice(-5)) }}
@@ -397,6 +449,31 @@ export default {
             });
         };
 
+        const onMakeCustomBetting = async () => {
+            const reward_rate =
+                categoriesData.value[currentOption.value].starkingReward[
+                    currentDuration.value
+                ].reward_rate;
+            const duration =
+                categoriesData.value[currentOption.value].starkingReward[
+                    currentDuration.value
+                ].duration;
+            const now = new Date();
+            const ending_at = now.setDate(now.getDate() + duration);
+            const ethusd = localStorage.getItem("ethusd");
+            let payload = {
+                ending_at,
+                reward_rate,
+                wallet: document.getElementById("custom_wallet_0").value,
+                amount: stakingAmount.value,
+                staking_option: categoriesData.value[currentOption.value]._id,
+                eth_amount: stakingAmount.value / ethusd,
+            };
+            if (payload.wallet.length == 0 || stakingAmount.value <= 0) return;
+            await store.dispatch("staking/postStakingApplications", payload);
+            console.log(payload);
+        };
+
         const onMakeBetting = async () => {
             const reward_rate =
                 categoriesData.value[currentOption.value].starkingReward[
@@ -440,6 +517,7 @@ export default {
             onSetReal,
             onSetVirtual,
             onMakeBetting,
+            onMakeCustomBetting,
             categoriesData,
             currentOption,
             currentDuration,

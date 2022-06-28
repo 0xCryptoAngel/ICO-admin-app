@@ -43,7 +43,6 @@ export default defineComponent({
         });
         const pullAlert = async () => {
             const alert = await store.dispatch("settings/fetchAlert");
-            console.log("alert", alert);
             const messages = {
                 newWithdrawals:
                     "There are users to withdraw cash, please refresh the page to view.",
