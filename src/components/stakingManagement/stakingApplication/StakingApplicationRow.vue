@@ -30,12 +30,18 @@
                 class="button mr-2"
                 @click="onConfirm"
                 :disabled="application.is_confirmed"
+                v-if="!application.is_checked"
             >
                 {{ $t("OK") }}
             </button>
-            <button class="button delete_button" @click="onCancel">
+            <button
+                v-if="!application.is_checked"
+                class="button delete_button"
+                @click="onCancel"
+            >
                 {{ $t("Cancel") }}
             </button>
+            <span v-if="application.ending_at > new Date()">Ended</span>
         </td>
     </tr>
 </template>
