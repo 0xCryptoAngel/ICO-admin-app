@@ -2,7 +2,7 @@
     <div class="ace-modal-container">
         <div class="ace-modal" @click="onClickModalContainer">
             <div
-                class="ace-modal-content w-1/4 text-white"
+                class="ace-modal-content w-1/4 text-black dark:text-white"
                 @click="
                     (e) => {
                         e.stopPropagation();
