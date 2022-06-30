@@ -19,18 +19,21 @@
         <td>
             <button
                 class="button mr-2"
-                :disabled="withdrawal.is_checked"
+                v-if="!withdrawal.is_checked"
                 @click="onConfirm(true)"
             >
                 {{ $t("Pass") }}
             </button>
             <button
-                :disabled="withdrawal.is_checked"
+                v-if="!withdrawal.is_checked"
                 class="button delete_button"
                 @click="onConfirm(false)"
             >
                 {{ $t("No Pass") }}
             </button>
+            <span v-if="withdrawal.is_checked">{{
+                withdrawal.is_confirmed ? $t("Pass") : $t("No Pass")
+            }}</span>
         </td>
     </tr>
 </template>
