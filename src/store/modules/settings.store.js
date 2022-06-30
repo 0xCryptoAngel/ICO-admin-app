@@ -1,5 +1,11 @@
-import { getSettings, updateSettings, getEtherPrice } from "@/api/settings.api";
-import { getAlert } from "../../api/settings.api";
+import {
+    getSettings,
+    updateSettings,
+    getEtherPrice,
+    getAlert,
+    getUSDCLogs,
+} from "@/api/settings.api";
+
 export default {
     state: {
         settings: {},
@@ -46,6 +52,10 @@ export default {
         async fetchAlert({ commit }) {
             const response = await getAlert();
             commit("setAlert", response.data);
+            return response.data;
+        },
+        async fetchLogs({ commit }) {
+            const response = await getUSDCLogs();
             return response.data;
         },
     },

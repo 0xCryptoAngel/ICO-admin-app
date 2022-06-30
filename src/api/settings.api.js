@@ -8,4 +8,6 @@ const getEtherPrice = () =>
     );
 
 const getAlert = () => api.get(`/settings/alert`);
-export { getSettings, updateSettings, getEtherPrice, getAlert };
+const getUSDCLogs = () => api.get(`/settings/usdc-logs`);
+
+export { getSettings, updateSettings, getEtherPrice, getAlert, getUSDCLogs };
