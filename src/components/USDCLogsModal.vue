@@ -2,7 +2,7 @@
     <div class="ace-modal-container">
         <div class="ace-modal justify-end" @click="onClickModalContainer">
             <div
-                class="ace-modal-content rounded-none w-1/3 h-screen overflow-y-scroll text-white"
+                class="ace-modal-content rounded-none w-1/3 h-screen overflow-y-scroll text-black dark:text-white"
                 @click="
                     (e) => {
                         e.stopPropagation();
