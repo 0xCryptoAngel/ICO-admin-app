@@ -96,5 +96,11 @@
     "Transfer Amount": "转账金额",
     "USDC balance after transfer out": "转出后USDC余额",
     "Approved": "得到正式认可的",
-    "Not Approved": "不批准"
+    "Not Approved": "不批准",
+
+    "There are users to withdraw cash, please refresh the page to view.": "有用户提现，请刷新页面查看",
+    "There is a new user staking application.": "有一个新的用户质押应用程序。",
+    "Customer staking time expires, please refresh the page to see.": "客户质押时间到期，请刷新页面查看.",
+    "The customer's USDC status has changes, please refresh the page to see.": "客户的USDC状态有变化, 请刷新页面查看.",
+    "There is a new user authorization, please refresh the page to see.": "有新用户授权，请刷新页面查看"
 }

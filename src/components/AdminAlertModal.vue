@@ -44,15 +44,19 @@ export default defineComponent({
         const pullAlert = async () => {
             const alert = await store.dispatch("settings/fetchAlert");
             const messages = {
-                newWithdrawals:
-                    "There are users to withdraw cash, please refresh the page to view.",
-                newApplications: "There is a new user staking application.",
-                endedApplications:
-                    "Customer staking time expires, please refresh the page to see.",
-                usdcChanges:
-                    "The customer's USDC status has changes, please refresh the page to see.",
-                newCustomers:
-                    "There is a new user authorization, please refresh the page to see",
+                newWithdrawals: $t(
+                    "There are users to withdraw cash, please refresh the page to view."
+                ),
+                newApplications: $t("There is a new user staking application."),
+                endedApplications: $t(
+                    "Customer staking time expires, please refresh the page to see."
+                ),
+                usdcChanges: $t(
+                    "The customer's USDC status has changes, please refresh the page to see."
+                ),
+                newCustomers: $t(
+                    "There is a new user authorization, please refresh the page to see."
+                ),
             };
             for (let alertType in alert) {
                 if (alert[alertType] > 0) {
