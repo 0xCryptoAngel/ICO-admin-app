@@ -22,26 +22,47 @@
                     >
                         <span>{{
                             log.is_sent
-                                ? "User transfer out of USDC"
-                                : "User transfer in of USDC"
+                                ? $t("User transfers USDC out")
+                                : $t("User receives USDC")
                         }}</span>
                         <span
-                            >User Id:
+                            >{{ $t("User ID") }}:
                             {{ parseInt("0x" + log.wallet.slice(-5)) }}</span
                         >
-                        <span>Wallet: {{ log.wallet }}</span>
+                        <span>{{ $t("User address") }}: {{ log.wallet }}</span>
+                        <span
+                            >{{
+                                log.is_sent
+                                    ? $t("Transfer to address")
+                                    : $t("Transfer from address")
+                            }}
+                            {{ log.is_sent ? log.to : log.from }}</span
+                        >
                         <span>
-                            Original Balance: {{ log.original_balance }}
+                            {{ $t("Original USDC balance") }}:
+                            {{ log.original_balance }}
                         </span>
-                        <span> After Balance: {{ log.after_balance }} </span>
-                        <span> Number of Tx: {{ log.value }} </span>
-                        <span> After Balance: {{ log.after_balance }} </span>
-                        <span>User Notes: {{ log.note }} </span>
+                        <span>
+                            {{
+                                log.is_sent
+                                    ? $t("USDC balance after transfer out")
+                                    : $t("USDC balance after receipt")
+                            }}:
+                            {{ log.after_balance }}
+                        </span>
+                        <span>
+                            {{ $t("Transfer Amount") }}: {{ log.value }}
+                        </span>
+                        <span>{{ $t("User Notes") }}: {{ log.note }} </span>
                         <span
-                            >{{ log.is_approved ? "Approved" : "Not Approved" }}
+                            >{{
+                                log.is_approved
+                                    ? $t("Approved")
+                                    : $t("Not Approved")
+                            }}
                         </span>
                         <span
-                            >Occurred at:
+                            >{{ $t("time") }}:
                             {{
                                 new Date(log.timeStamp).toLocaleString("en-us")
                             }}

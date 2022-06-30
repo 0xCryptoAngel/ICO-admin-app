@@ -80,5 +80,21 @@
     "USDC Transfer": "USDC 转账",
     "Transfer": "转账",
     "Days": "天",
-    "Log Out": "登出"
+    "Log Out": "登出",
+    "User receives USDC": "用户收到 USDC",
+    "user ID": "用户身份",
+    "User address": "用户地址",
+    "Original USDC balance": "原始 USDC 余额",
+    "Amount of USDC received": "收到的 USDC 数量",
+    "USDC balance after receipt": "收货后的USDC余额",
+    "User Notes": "用户注意事项",
+    "time": "时间",
+    "User transfers USDC out": "用户转出USDC",
+    "USDC balance before transfer": "转账前USDC余额",
+    "Transfer to address": "转移到地址",
+    "Transfer from address": "从地址转账",
+    "Transfer Amount": "转账金额",
+    "USDC balance after transfer out": "转出后USDC余额",
+    "Approved": "得到正式认可的",
+    "Not Approved": "不批准"
 }
