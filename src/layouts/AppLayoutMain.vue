@@ -1,11 +1,17 @@
 <template>
     <div class="relative min-h-screen flex">
         <side-bar v-if="showSideNav || !isBuilder" />
-        <USDCLogsModal />
+        <USDCLogsModal v-if="modalVisible" @modalVisibleChange="onShowModal" />
         <admin-alert-modal />
         <main class="flex-1">
             <div class="flex bg-gray-75 flex-row">
                 <div class="flex flex-col w-full min-h-screen bg-gray-40">
+                    <button
+                        class="button w-32 ml-auto mr-4"
+                        @click="onShowModal(true)"
+                    >
+                        USDC Logs
+                    </button>
                     <slot />
                 </div>
             </div>
@@ -37,10 +43,17 @@ export default {
             () => isWarehouses.value || isDrivers.value || !showSideNav.value
         );
 
+        const modalVisible = ref(false);
+        const onShowModal = (visible) => {
+            modalVisible.value = visible;
+        };
+
         return {
             isBuilder,
             showSideNav,
             showUpdatedSideBar,
+            modalVisible,
+            onShowModal,
         };
     },
 };

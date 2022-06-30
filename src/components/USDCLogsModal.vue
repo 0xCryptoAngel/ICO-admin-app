@@ -1,6 +1,6 @@
 <template>
     <div class="ace-modal-container">
-        <div class="ace-modal justify-end">
+        <div class="ace-modal justify-end" @click="onClickModalContainer">
             <div
                 class="ace-modal-content rounded-none w-1/3 h-screen overflow-y-scroll text-white"
                 @click="
@@ -66,8 +66,13 @@ export default defineComponent({
         const pullAlert = async () => {
             logs.value = await store.dispatch("settings/fetchLogs");
         };
+
+        const onClickModalContainer = (e) => {
+            emit("modalVisibleChange", false);
+        };
         return {
             logs,
+            onClickModalContainer,
         };
     },
 });
