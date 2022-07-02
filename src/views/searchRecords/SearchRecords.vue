@@ -19,6 +19,26 @@
                     {{ $t("Search") }}
                 </button>
             </div>
+            <div class="flex pt-6">
+                <table>
+                    <thead>
+                        <th
+                            class="py-2 px-2"
+                            v-for="(item, index) in result.header"
+                            :key="index"
+                        >
+                            {{ item }}
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(row, _index) in result.data" :key="_index">
+                            <td v-for="(text, _index) in row" :key="_index">
+                                {{ text }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </page-wrapper>
 </template>
@@ -34,18 +54,21 @@ export default {
     setup() {
         const searchOption = ref("");
         const query = ref("");
+        const result = ref({ header: [], data: [] });
 
         const onSearchRecord = async () => {
+            if (searchOption.value == 0) return;
             const response = await searchRecord(
                 searchOption.value,
                 query.value
             );
-            console.log(searchOption.value, query.value, response.data);
+            result.value = response.data;
         };
         return {
             onSearchRecord,
             searchOption,
             query,
+            result,
         };
     },
 };

