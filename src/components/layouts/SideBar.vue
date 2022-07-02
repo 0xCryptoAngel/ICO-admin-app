@@ -27,8 +27,9 @@ export default {
     },
     setup() {
         onMounted(() => {
-            document.getElementById("locale_select").value =
-                localStorage.getItem("locale");
+            if (document.getElementById("locale_select"))
+                document.getElementById("locale_select").value =
+                    localStorage.getItem("locale");
         });
         const onChangeLanguage = (e) => {
             if (e.target.value.length)

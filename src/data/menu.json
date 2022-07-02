@@ -77,6 +77,13 @@
                     "roles": [1]
                 }
             ]
+        },
+        {
+            "title": "Search Records",
+            "pathName": "search-records",
+            "icon": "warehouses_active",
+            "icon_active": "warehouses",
+            "roles": [1]
         }
     ]
 }

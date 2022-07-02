@@ -41,7 +41,9 @@
             >
                 {{ $t("Cancel") }}
             </button>
-            <span v-if="application.ending_at > new Date()">Ended</span>
+            <span v-if="new Date(application.ending_at) < new Date()"
+                >Ended</span
+            >
         </td>
     </tr>
 </template>

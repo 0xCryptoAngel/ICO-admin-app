@@ -149,6 +149,15 @@ const routes = [
             roles: [1, 2, 3],
         },
     },
+    {
+        path: "/search-records",
+        name: "search-records",
+        component: () => import("@/views/searchRecords/SearchRecords.vue"),
+        meta: {
+            title: "Withdrawal",
+            roles: [1],
+        },
+    },
 ];
 
 const router = createRouter({
