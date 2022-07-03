@@ -9,6 +9,7 @@
                     <option value="3">{{ $t("Staking Income") }}</option>
                     <option value="4">{{ $t("Staking Application") }}</option>
                     <option value="5">{{ $t("Withdrawal") }}</option>
+                    <option value="6">{{ $t("Invitation Income") }}</option>
                 </select>
                 <input
                     v-model="query"

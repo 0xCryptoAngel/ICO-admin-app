@@ -47,8 +47,8 @@ export default {
                         (item) => item._id == curInvitor
                     );
                     if (invitor) {
-                        customer.invitation_object[i - 1].number++;
-                        customer.invitation_object[i - 1].list.push(
+                        invitor.invitation_object[i - 1].number++;
+                        invitor.invitation_object[i - 1].list.push(
                             invitor.wallet
                         );
                         curInvitor = invitor.invitor;
