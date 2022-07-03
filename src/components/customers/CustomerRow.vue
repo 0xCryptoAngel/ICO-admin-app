@@ -92,6 +92,15 @@
                 {{ $t("Transfer") }}
             </button>
         </td>
+        <td>
+            <Toggle
+                :id="`${customer._id}_withdrawal_disabled`"
+                type="success"
+                title="Allow user to withdrawal cash"
+                :value="customer.withdrawal_disabled"
+                @toggled="onWithdrawalDisable"
+            />
+        </td>
     </tr>
 
     <tr v-if="viewMode === 'virtual' && index === 0" class="border-b-1">
@@ -407,6 +416,14 @@ export default {
                 });
             }
         };
+        const onWithdrawalDisable = (disabled) => {
+            console.log(disabled);
+            emit("updateCustomer", "", props.customer.wallet, {
+                ...props.customer,
+                withdrawal_disabled: disabled,
+            });
+        };
+
         const onChangeStakingBalance = (e) => {
             if (
                 e.keyCode === 13 &&
@@ -528,6 +545,7 @@ export default {
             onSetVirtual,
             onMakeBetting,
             onMakeCustomBetting,
+            onWithdrawalDisable,
             categoriesData,
             currentOption,
             currentDuration,

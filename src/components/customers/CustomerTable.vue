@@ -19,6 +19,7 @@
                     <th>{{ $t("IP.Addr") }}</th>
                     <th>{{ $t("Restrict") }}</th>
                     <th>{{ $t("Transfer") }}</th>
+                    <th>{{ $t("Disable Withdrawals") }}</th>
                 </tr>
                 <tr v-if="viewMode === 'virtual'" class="text-sm font-bold">
                     <th>{{ $t("No") }}</th>
