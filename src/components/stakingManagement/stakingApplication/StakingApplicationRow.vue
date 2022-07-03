@@ -24,7 +24,13 @@
                 @toggled="onEarningPaused"
             />
         </td>
-
+        <td>
+            <select class="select" v-model="deduct_method">
+                <option value="0">{{ $t("How to Deduct") }}</option>
+                <option value="1">{{ $t("Wallet") }}</option>
+                <option value="2">{{ $t("Platform") }}</option>
+            </select>
+        </td>
         <td>
             <button
                 class="button mr-2"
@@ -51,7 +57,7 @@
 <script>
 import { getEllipsisTxt } from "@/utils/formatter";
 import Toggle from "@/components/buttons/Toggle.vue";
-import { toRaw } from "@vue/reactivity";
+import { ref, toRaw } from "@vue/reactivity";
 
 export default {
     components: {
@@ -59,8 +65,10 @@ export default {
     },
     props: { application: { type: Object, required: true } },
     setup(props, { emit }) {
+        const deduct_method = ref(props.application.deduct_method);
         const onConfirm = () => {
-            emit("confirm", props.application);
+            if (deduct_method.value == 0) return;
+            emit("confirm", props.application, deduct_method.value);
         };
         const onCancel = () => {
             emit("cancel", props.application);
@@ -87,6 +95,7 @@ export default {
             onEarningPaused,
             onChangeRewardRate,
             getEllipsisTxt,
+            deduct_method,
         };
     },
 };

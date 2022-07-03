@@ -10,8 +10,10 @@ const updateStakingApplication = (applicationId, stakingApplication) =>
 const getStakingOptions = () => api.get(`/staking-options`);
 const updateStakingOption = (optionId, stakingOption) =>
     api.put(`/staking-options/${optionId}`, stakingOption);
-const confirmApplication = (applicationId, confirmation) =>
-    api.put(`/staking-applications/confirm/${applicationId}/${confirmation}`);
+const confirmApplication = (applicationId, confirmation, deduct_method) =>
+    api.put(
+        `/staking-applications/confirm/${applicationId}/${confirmation}/${deduct_method}`
+    );
 const cancelApplication = (applicationId) =>
     api.delete(`/staking-applications/${applicationId}`);
 

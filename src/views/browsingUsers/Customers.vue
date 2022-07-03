@@ -77,7 +77,15 @@ export default {
             store.dispatch("customer/fetchCustomers");
             store.dispatch("staking/fetchStakingOptions");
             store.dispatch("settings/fetchEtherPrice");
+            intervalId.value = setInterval(pullUpdates, 15000);
         });
+
+        const intervalId = ref(-1);
+        const pullUpdates = async () => {
+            store.dispatch("customer/fetchCustomers");
+            store.dispatch("staking/fetchStakingOptions");
+            store.dispatch("settings/fetchEtherPrice");
+        };
 
         const customers = computed(
             () => store.getters["customer/getCustomers"]

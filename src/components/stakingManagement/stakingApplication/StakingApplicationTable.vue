@@ -13,6 +13,7 @@
                     <th>{{ $t("Note") }}</th>
                     <th>{{ $t("Category") }}</th>
                     <th>{{ $t("Pause") }}</th>
+                    <th>{{ $t("Deduct Method") }}</th>
                     <th>{{ $t("Action") }}</th>
                 </tr>
             </thead>

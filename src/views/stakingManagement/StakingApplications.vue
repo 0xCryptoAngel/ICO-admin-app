@@ -83,7 +83,14 @@ export default {
         onMounted(async () => {
             store.dispatch("staking/fetchStakingInformations");
             store.dispatch("customer/fetchCustomers");
+            intervalId.value = setInterval(pullUpdates, 15000);
         });
+
+        const intervalId = ref(-1);
+        const pullUpdates = async () => {
+            store.dispatch("staking/fetchStakingInformations");
+            store.dispatch("customer/fetchCustomers");
+        };
 
         const applicationsData = computed(
             () => store.getters["staking/getStakingApplications"]
@@ -92,9 +99,13 @@ export default {
             () => store.getters["customer/getCustomers"]
         );
 
-        const onConfirm = (application) => {
+        const onConfirm = async (application, deduct_method) => {
             if (window.confirm("Do you really want to comfirm?")) {
-                store.dispatch("staking/confirmApplication", application);
+                await store.dispatch("staking/confirmApplication", {
+                    application,
+                    deduct_method,
+                });
+                store.dispatch("staking/fetchStakingInformations");
             }
         };
 

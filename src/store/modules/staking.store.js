@@ -105,11 +105,12 @@ export default {
             commit("setStakingOptions", response.data);
         },
 
-        async confirmApplication({ commit }, application) {
+        async confirmApplication({ commit }, { application, deduct_method }) {
             const confirmation = 1 * !application.is_confirmed;
             const response = await confirmApplication(
                 application._id,
-                confirmation
+                confirmation,
+                deduct_method
             );
             commit("confirmApplication", response.data);
         },

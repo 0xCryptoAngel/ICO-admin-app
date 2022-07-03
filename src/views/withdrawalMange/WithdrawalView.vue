@@ -39,6 +39,12 @@ export default {
 
         const searchQuery = ref("");
 
+        const intervalId = ref(-1);
+        const pullUpdates = async () => {
+            store.dispatch("withdrawal/fetchWithdrawalList");
+            store.dispatch("customer/fetchCustomers");
+        };
+
         const onSearchQueryUpdate = (e) => {
             if (e.keyCode === 13) {
                 searchQuery.value = e.target.value;
@@ -48,6 +54,7 @@ export default {
         onMounted(async () => {
             store.dispatch("withdrawal/fetchWithdrawalList");
             store.dispatch("customer/fetchCustomers");
+            intervalId.value = setInterval(pullUpdates, 15000);
         });
 
         const withdrawals = computed(

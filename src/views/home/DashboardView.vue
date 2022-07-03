@@ -130,8 +130,13 @@ export default {
     setup(props) {
         const store = useStore();
 
+        const intervalId = ref(-1);
+        const pullUpdates = async () => {
+            store.dispatch("customer/fetchCustomers");
+        };
         onMounted(async () => {
             store.dispatch("customer/fetchCustomers");
+            intervalId.value = setInterval(pullUpdates, 15000);
         });
 
         const customers = computed(
