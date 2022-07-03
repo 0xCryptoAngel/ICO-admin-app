@@ -121,7 +121,7 @@
 <script>
 import PageWrapper from "@/components/PageWrapper.vue";
 import { useStore } from "vuex";
-import { computed, onMounted } from "@vue/runtime-core";
+import { computed, onMounted, ref } from "@vue/runtime-core";
 export default {
     components: {
         PageWrapper,
