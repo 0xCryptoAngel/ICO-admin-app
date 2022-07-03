@@ -360,9 +360,11 @@ export default {
         const showNote = ref(false);
         const customerNote = ref(props.customer.note);
         const onStakingEnabled = (enabled) => {
-            const msg = `Do you really want to ${
-                enabled ? "enable" : "disable"
-            } staking?`;
+            const msg = $t(
+                `Do you really want to ${
+                    enabled ? "enable" : "disable"
+                } staking?`
+            );
             emit("updateCustomer", msg, props.customer.wallet, {
                 ...props.customer,
                 staking_enabled: enabled,

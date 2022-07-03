@@ -13,7 +13,7 @@
                 </select>
                 <input
                     v-model="query"
-                    placeholder="User ID or User Wallet Address"
+                    :placeholder="$t('User ID or User Wallet Address')"
                     class="search-input w-80 my-0"
                 />
                 <button class="button w-32 h-10" @click="onSearchRecord">
@@ -28,7 +28,7 @@
                             v-for="(item, index) in result.header"
                             :key="index"
                         >
-                            {{ item }}
+                            {{ $t(item) }}
                         </th>
                     </thead>
                     <tbody>

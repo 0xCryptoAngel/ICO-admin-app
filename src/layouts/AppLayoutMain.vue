@@ -10,7 +10,7 @@
                         class="button w-32 ml-auto mr-4"
                         @click="onShowModal(true)"
                     >
-                        USDC Logs
+                        {{ $t("USDC Logs") }}
                     </button>
                     <slot />
                 </div>
