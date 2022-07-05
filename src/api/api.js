@@ -14,7 +14,7 @@ const api = axios.create({
         "Content-Type": "application/json",
     },
 });
-api.defaults.withCredentials = true;
+// api.defaults.withCredentials = true;
 // api.defaults.headers.cookie;
 api.interceptors.response.use(
     function (response) {
