@@ -27,6 +27,7 @@
                         ?.filter(
                             (item) => !confirmed || item.is_confirmed == true
                         )
+                        .filter((item) => item.is_canceled == false)
                         .map((item) => {
                             item.customer = customerData.find(
                                 (cus) => cus.wallet === item.wallet

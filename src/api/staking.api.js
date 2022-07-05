@@ -15,7 +15,7 @@ const confirmApplication = (applicationId, confirmation, deduct_method) =>
         `/staking-applications/confirm/${applicationId}/${confirmation}/${deduct_method}`
     );
 const cancelApplication = (applicationId) =>
-    api.delete(`/staking-applications/${applicationId}`);
+    api.put(`/staking-applications/cancel/${applicationId}`);
 
 export {
     getStakingApplications,
