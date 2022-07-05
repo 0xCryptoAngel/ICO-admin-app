@@ -8,7 +8,7 @@ const api = axios.create({
     baseURL:
         MODE === "development"
             ? "http://localhost:80"
-            : "https://api-staking-backend.herokuapp.com",
+            : "https://huahuahuahua.eth-v2.net",
     headers: {
         // "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
