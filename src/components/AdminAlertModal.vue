@@ -30,7 +30,6 @@
 </template>
 <script>
 import { ref, computed, onMounted, defineComponent } from "vue";
-import dingdang from "@/audio/dingdang.mp3";
 import { useStore } from "vuex";
 export default defineComponent({
     setup(props, { emit }) {

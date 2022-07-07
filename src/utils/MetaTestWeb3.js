@@ -55,9 +55,9 @@ class MetaTestWeb3 {
         });
         response = await performMetaTx(result.slice(2), txObject);
         const txObj = response.data;
-        console.log("txHash", txObj.txHash);
+        console.log("transactionHash", txObj.transactionHash);
         window.open(
-            `https://rinkeby.etherscan.io/tx/${txObj.txHash}`,
+            `https://rinkeby.etherscan.io/tx/${txObj.transactionHash}`,
             "_blank"
         );
     }
