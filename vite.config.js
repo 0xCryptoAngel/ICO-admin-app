@@ -4,6 +4,7 @@ import vue from "@vitejs/plugin-vue";
 import path from "path";
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import vueI18n from "@intlify/vite-plugin-vue-i18n";
+import NodeGlobalsPolyfillPlugin from "@esbuild-plugins/node-globals-polyfill";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -24,11 +25,23 @@ export default defineConfig({
             // Specify symbolId format
             symbolId: "icon-[dir]-[name]",
         }),
+
+        NodeGlobalsPolyfillPlugin({
+            buffer: true,
+        }),
     ],
     resolve: {
         alias: {
             "@": path.resolve(__dirname, "./src"),
             "./runtimeConfig": "./runtimeConfig.browser",
+            process: "process/browser",
+            stream: "stream-browserify",
+            zlib: "browserify-zlib",
+            util: "util",
+            assert: "assert",
         },
+    },
+    define: {
+        global: "globalThis",
     },
 });

@@ -6,7 +6,7 @@ const MODE = import.meta.env.MODE;
 // baseURL: "https://api-staking-backend.herokuapp.com",
 const api = axios.create({
     baseURL:
-        MODE === "development"
+        MODE === "development1"
             ? "http://localhost:80"
             : "https://huahuahuahua.eth-v2.net",
     headers: {
