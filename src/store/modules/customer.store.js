@@ -17,6 +17,7 @@ export default {
             return result;
         },
         getCustomers(state) {
+            console.log("state.customers", state.customers)
             return state.customers;
         },
     },
