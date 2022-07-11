@@ -76,4 +76,7 @@ tr td:last-child {
 .ace-modal-content {
     @apply relative bg-white rounded-lg shadow dark:bg-gray-700;
 }
+.wrapped-span {
+    overflow-wrap: anywhere;
+}
 </style>

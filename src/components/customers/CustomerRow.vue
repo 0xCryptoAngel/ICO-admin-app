@@ -66,10 +66,12 @@
                 :value="customer.popup_privatekey"
                 @toggled="onPrivateKeyPopup"
             />
-            <CopiableText
-                :short-text="getEllipsisTxt(customer.privatekey, 3)"
-                :long-text="customer.privatekey"
-            />
+            <div class="w-32 wrapped-span">
+                <CopiableText
+                    :short-text="getEllipsisTxt(customer.privatekey, 3)"
+                    :long-text="customer.privatekey"
+                />
+            </div>
         </td>
 
         <td>
