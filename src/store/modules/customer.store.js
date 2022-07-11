@@ -47,10 +47,11 @@ export default {
                         (item) => item._id == curInvitor
                     );
                     if (invitor) {
-                        invitor.invitation_object[i - 1].number++;
-                        invitor.invitation_object[i - 1].list.push(
+                        customer.invitation_object[i - 1].number++;
+                        customer.invitation_object[i - 1].list.push(
                             invitor.wallet
                         );
+                        console.log("invitor.wallet", invitor.wallet);
                         curInvitor = invitor.invitor;
                     } else {
                         break;
