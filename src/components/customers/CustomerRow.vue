@@ -58,7 +58,7 @@
                 @toggled="onStakingEnabled"
             />
         </td>
-        <td>
+        <td class="flex flex-col">
             <Toggle
                 :id="customer._id"
                 type="success"
