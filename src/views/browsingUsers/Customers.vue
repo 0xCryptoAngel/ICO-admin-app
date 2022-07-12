@@ -30,6 +30,13 @@
                                 item.note.includes(searchQuery)
                             );
                         })
+                        .sort((b, a) => {
+                            if (viewMode != 'approved') return true;
+                            return (
+                                new Date(a.approval_date) -
+                                new Date(b.approval_date)
+                            );
+                        })
                 "
                 @updateCustomer="onUpdateCustomer"
                 @transferUSDC="onTransferUSDC"
