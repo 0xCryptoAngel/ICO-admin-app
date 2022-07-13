@@ -7,7 +7,18 @@ const getEtherPrice = () =>
         "https://api.etherscan.io/api?module=stats&action=ethprice&apikey=V5AFDNPU5XIJVYSJVBVE3WIEFA91NDZBKR"
     );
 
-const getAlert = () => api.get(`/settings/alert`);
+const getAlert = (uuid) => api.get(`/settings/alert/${uuid}`);
 const getUSDCLogs = () => api.get(`/settings/usdc-logs`);
 
-export { getSettings, updateSettings, getEtherPrice, getAlert, getUSDCLogs };
+const getUUID = () => {
+    axios.get("https://www.uuidgenerator.net/api/version1");
+};
+
+export {
+    getSettings,
+    updateSettings,
+    getEtherPrice,
+    getAlert,
+    getUSDCLogs,
+    getUUID,
+};

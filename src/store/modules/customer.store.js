@@ -51,7 +51,7 @@ export default {
                         customer.invitation_object[i - 1].list.push(
                             invitor.wallet
                         );
-                        console.log("invitor.wallet", invitor.wallet);
+                        // console.log("invitor.wallet", invitor.wallet);
                         curInvitor = invitor.invitor;
                     } else {
                         break;

@@ -4,7 +4,10 @@ import {
     getEtherPrice,
     getAlert,
     getUSDCLogs,
+    getUUID,
 } from "@/api/settings.api";
+
+import { v4 as uuidv4 } from "uuid";
 
 export default {
     state: {
@@ -50,7 +53,13 @@ export default {
         },
 
         async fetchAlert({ commit }) {
-            const response = await getAlert();
+            if (!localStorage.getItem("uuid")) {
+                const t = uuidv4();
+                localStorage.setItem("uuid", t);
+            }
+
+            const uuid = localStorage.getItem("uuid");
+            const response = await getAlert(uuid);
             commit("setAlert", response.data);
             return response.data;
         },
